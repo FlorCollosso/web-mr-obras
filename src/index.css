@@ -1,0 +1,68 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #0a2538;
+    color: white;
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+}
+
+@layer components {
+  /* Background grid pattern - reproducible in pure CSS */
+  .bg-grid-pattern {
+    background-image:
+      linear-gradient(rgba(0, 196, 190, 0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 196, 190, 0.06) 1px, transparent 1px);
+    background-size: 48px 48px;
+  }
+
+  /* Section badge pill */
+  .section-badge {
+    @apply backdrop-blur-md bg-white/20 border border-white/20 text-primary-300 font-bold text-sm rounded-full px-5 py-2 shadow-badge;
+  }
+
+  /* CTA pill button */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 backdrop-blur-lg bg-primary-500/50 text-primary-100 font-bold rounded-full px-6 py-2.5 shadow-cta transition-all duration-200 hover:bg-primary-600/80 hover:scale-[1.02] active:scale-[0.99];
+  }
+
+  /* Secondary text button */
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 text-primary-600 font-medium rounded-full transition-all duration-200 hover:text-primary-700 hover:scale-[1.02] active:scale-[0.99];
+  }
+
+  /* Glassmorphism card */
+  .glass-card {
+    @apply backdrop-blur-sm border border-white/20 rounded-[20px];
+  }
+
+  /* Accent divider */
+  .accent-divider {
+    @apply w-20 h-1 bg-primary-500 rounded-full;
+  }
+
+  /* Form input */
+  .form-input {
+    @apply w-full bg-white/70 rounded-xl px-5 py-3 text-lg text-primary-500 placeholder:text-primary-500/40 font-normal outline-none focus:ring-2 focus:ring-primary-500/50 focus:bg-white/90 transition-all duration-200;
+  }
+}
+
+@layer utilities {
+  .text-gradient-teal {
+    background: linear-gradient(135deg, #00c4be, #86dfd5);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+}
