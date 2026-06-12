@@ -70,7 +70,7 @@ export default function ServiciosSection() {
                     Más popular
                   </span>
                 )}
-                <span className="absolute top-3 right-3 backdrop-blur-sm bg-white/15 border border-white/20 text-primary-200 text-xs font-bold px-3 py-1 rounded-full z-10">
+                <span className="absolute top-3 right-3 backdrop-blur-sm bg-white/15 border border-white/20 text-primary-100 text-xs font-bold px-3 py-1 rounded-full z-10">
                   {s.badge}
                 </span>
 

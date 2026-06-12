@@ -102,16 +102,16 @@ export const SERVICES = [
     badge: 'Steel Framing',
     title: 'Casas llave en mano',
     description:
-      'Nos encargamos de todo: diseño, permisos, construcción y entrega final. Vos solo disfrutás el resultado.',
+      'Nos encargamos de todo el proceso, desde el diseño hasta la entrega final. Construimos viviendas personalizadas para que disfrutes una experiencia simple, segura y sin preocupaciones.',
     image: casaArroyitoFrente,
     popular: true,
   },
   {
     id: 2,
     badge: 'Arquitectura',
-    title: 'Diseño y proyectos personalizados',
+    title: 'Proyectos personalizados',
     description:
-      'Desarrollamos el proyecto arquitectónico completo según tu terreno, presupuesto y estilo de vida.',
+      'Creamos proyectos adaptados a tu terreno, presupuesto y estilo de vida. Diseñamos espacios funcionales y modernos pensados para las necesidades de cada familia.',
     image: 'https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=700&q=80',
   },
   {
@@ -119,7 +119,7 @@ export const SERVICES = [
     badge: 'Obra & Reformas',
     title: 'Construcción y ampliaciones',
     description:
-      'Obras nuevas, ampliaciones y refacciones. Trabajamos en steel framing o sistema tradicional según tu necesidad.',
+      'Realizamos obras nuevas, ampliaciones y remodelaciones con soluciones adaptadas a cada proyecto. Combinamos sistemas modernos con experiencia en construcción tradicional.',
     image: 'https://images.unsplash.com/photo-1592581912743-cfb5a3002795?q=80',
   },
 ]
@@ -167,6 +167,6 @@ export const CONTACT_SERVICES = [
 
 export const SOCIAL_LINKS = [
   { label: 'Seguinos en Instagram', href: 'https://www.instagram.com/mr.obras.ar/', icon: 'instagram' },
-  { label: 'Seguinos en Facebook',  href: 'https://www.facebook.com/mrobras.ar/', icon: 'facebook' },
+  { label: 'Seguinos en Facebook', href: 'https://www.facebook.com/mrobras.ar/', icon: 'facebook' },
   { label: 'Escribinos en WhatsApp', href: 'https://api.whatsapp.com/send?phone=5493510000000', icon: 'whatsapp' },
 ]

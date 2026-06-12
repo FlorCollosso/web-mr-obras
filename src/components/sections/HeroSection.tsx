@@ -60,11 +60,11 @@ export default function HeroSection() {
             <h1 className="text-4xl md:text-5xl lg:text-[48px] font-extrabold text-white leading-[1.1] mb-10 whitespace-pre-line">
               {slide.title}
             </h1>
-            <a href="#contacto" className="btn-primary text-md md:text-md px-6 py-2">
-              Solicitar presupuesto
-            </a>
-          </div>
 
+          </div>
+          <a href="#contacto" className="btn-primary text-md md:text-md px-6 py-2">
+            Solicitar presupuesto
+          </a>
           {/* Carousel indicators */}
           <div className="flex gap-3 mt-16">
             {HERO_SLIDES.map((s, i) => (
@@ -72,11 +72,10 @@ export default function HeroSection() {
                 key={s.id}
                 onClick={() => goTo(i)}
                 aria-label={`Slide ${i + 1}`}
-                className={`rounded-full transition-all duration-300 ${
-                  i === current
+                className={`rounded-full transition-all duration-300 ${i === current
                     ? 'bg-primary-500 w-9 h-3'
                     : 'bg-primary-600 w-3 h-3 hover:bg-primary-500'
-                }`}
+                  }`}
               />
             ))}
           </div>

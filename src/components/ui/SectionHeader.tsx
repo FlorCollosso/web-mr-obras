@@ -17,7 +17,7 @@ export default function SectionHeader({
     <div className={`flex items-start justify-between mb-10 ${className}`}>
       <div className="flex-1">
         <h2
-          className={`text-4xl md:text-5xl font-bold leading-loose mb-5 ${
+          className={`text-4xl md:text-4xl lg:text-5xl font-black leading-none leading-[1.2] ${
             isDark ? 'text-primary-200' : 'text-primary-800'
           }`}
         >
