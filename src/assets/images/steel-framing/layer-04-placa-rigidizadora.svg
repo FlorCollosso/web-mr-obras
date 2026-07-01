@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 303.34 653.6">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #97835c;
+      }
+
+      .cls-2 {
+        fill: none;
+      }
+
+      .cls-3 {
+        fill: #aa9877;
+      }
+
+      .cls-4 {
+        fill: #afa790;
+      }
+
+      .cls-5 {
+        clip-path: url(#clippath);
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-2" width="303.34" height="653.6"/>
+    </clipPath>
+  </defs>
+  <g id="Capa_1-2" data-name="Capa 1">
+    <g id="layer-04-placa-rigidizadora">
+      <g class="cls-5">
+        <g>
+          <polygon class="cls-4" points="286.71 126.8 61.93 389.92 67.92 393.82 292.7 130.7 286.71 126.8"/>
+          <polygon class="cls-1" points="61.93 389.92 61.96 642.58 67.92 646.46 67.92 393.82 61.93 389.92"/>
+          <polygon class="cls-3" points="67.92 646.46 292.7 487.47 292.7 130.7 67.92 393.82 67.92 646.46"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

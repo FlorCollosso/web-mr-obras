@@ -47,9 +47,6 @@ export default function HeroSection() {
         style={{ background: 'linear-gradient(106deg, rgba(100,100,100,0.75) 0%, rgba(0,38,37,0.85) 100%)' }}
       />
 
-      {/* Grid pattern overlay */}
-      <div className="absolute inset-0 bg-grid-pattern pointer-events-none opacity-40" />
-
       {/* Content */}
       <div className="relative z-10 h-full flex items-center">
         <div className="max-w-[1300px] mx-auto px-6 lg:px-8 w-full">

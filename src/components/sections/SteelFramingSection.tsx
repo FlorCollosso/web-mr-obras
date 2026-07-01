@@ -13,7 +13,7 @@ export default function SteelFramingSection() {
 
   return (
     <section
-      id="steel-framing"
+      id="steelframing"
       className="relative py-24 lg:py-36 overflow-hidden"
       ref={ref}
     >
@@ -71,7 +71,7 @@ export default function SteelFramingSection() {
 
           {/* ── Right: video card ───────────────────────────── */}
           <div className={`h-full transition-all duration-700 delay-100 ${inView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'}`}>
-            <div className="h-full relative h-[320px] sm:h-[380px] lg:h-[520px] rounded-2xl overflow-hidden border border-white/15 shadow-[0_24px_64px_rgba(0,0,0,0.3)]">
+            <div className="h-full relative sm:h-[380px] lg:h-[520px] rounded-2xl overflow-hidden border border-white/15 shadow-[0_24px_64px_rgba(0,0,0,0.3)]">
               <video
                 src={videoSteelFraming}
                 autoPlay

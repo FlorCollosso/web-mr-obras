@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 303.34 653.6">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #575451;
+      }
+
+      .cls-2 {
+        fill: #474442;
+      }
+
+      .cls-3 {
+        fill: none;
+      }
+
+      .cls-4 {
+        clip-path: url(#clippath);
+      }
+
+      .cls-5 {
+        fill: #6e6a67;
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-3" width="303.34" height="653.6"/>
+    </clipPath>
+  </defs>
+  <g id="Capa_1-2" data-name="Capa 1">
+    <g id="layer-07-proteccion-exterior">
+      <g class="cls-4">
+        <g>
+          <polygon class="cls-5" points="298.7 334.7 73.92 597.82 76.08 599.22 300.86 336.11 298.7 334.7"/>
+          <polygon class="cls-2" points="73.92 597.82 73.92 650.56 76.24 652.07 76.08 599.22 73.92 597.82"/>
+          <polygon class="cls-1" points="76.24 652.07 301.02 493.08 300.86 336.11 76.08 599.23 76.24 652.07"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

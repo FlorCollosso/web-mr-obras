@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Capa_2" data-name="Capa 2" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 303.34 653.6">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #dbccb6;
+      }
+
+      .cls-2 {
+        fill: #afa08b;
+      }
+
+      .cls-3 {
+        fill: none;
+      }
+
+      .cls-4 {
+        fill: #cbbba0;
+      }
+
+      .cls-5 {
+        clip-path: url(#clippath);
+      }
+    </style>
+    <clipPath id="clippath">
+      <rect class="cls-3" width="303.34" height="653.6"/>
+    </clipPath>
+  </defs>
+  <g id="Capa_1-2" data-name="Capa 1">
+    <g id="layer-01-muro-interior">
+      <g class="cls-5">
+        <g>
+          <polygon class="cls-2" points="12.8 613.14 0 604.82 0 159.2 12.8 167.53 12.8 613.14"/>
+          <polygon class="cls-1" points="12.8 167.49 0 159.16 225.12 0 237.92 8.33 12.8 167.49"/>
+          <polygon class="cls-4" points="12.8 167.53 12.8 613.14 237.92 461.28 237.92 8.37 12.8 167.53"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>

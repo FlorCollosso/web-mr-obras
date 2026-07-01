@@ -64,6 +64,7 @@ export const PROCESS_STEPS = [
 export const PROJECTS = [
   {
     id: 1,
+    slug: 'casa-familiar-arroyito',
     title: 'Casa Familiar - Arroyito',
     subtitle: 'Sistema mixto - 120 m²',
     image: casaArroyitoCocina,
@@ -71,27 +72,75 @@ export const PROJECTS = [
   },
   {
     id: 2,
+    slug: 'cabana-valle-hermoso',
     title: 'Cabaña - Valle Hermoso',
     subtitle: 'Steel framing - 90 m²',
     image: cabañaValle,
   },
   {
     id: 3,
+    slug: 'casa-garcia-cordoba',
     title: 'Casa García - Córdoba',
     subtitle: 'Construcción tradicional - 85 m²',
     image: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=600&q=80',
   },
   {
     id: 4,
+    slug: 'galeria-arroyito',
     title: 'Galería - Arroyito',
     subtitle: 'Steel framing - 30 m²',
     image: 'https://images.unsplash.com/photo-1504307651254-35680f356dfd?w=600&q=80',
   },
   {
     id: 5,
+    slug: 'vestidor-la-francia',
     title: 'Vestidor - La Francia',
     subtitle: 'Steel framing - 30 m²',
     image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80',
+  },
+]
+
+// ─── Projects Page ──────────────────────────────────────────────────────────────────
+export const PORTFOLIO_PROJECTS = [
+  {
+    id: 1,
+    slug: 'casa-familiar-arroyito',
+    title: 'Casa Familiar - Arroyito',
+    category: 'Viviendas',
+    system: 'Sistema mixto',
+    area: '120 m²',
+    location: 'Arroyito, Córdoba',
+    year: '2025',
+    cover: casaArroyitoFrente,
+    gallery: [casaArroyitoFrente, casaArroyitoCocina],
+    description:
+      'Vivienda familiar desarrollada con sistema mixto, combinando construcción tradicional y soluciones en seco para optimizar tiempos, terminaciones y funcionalidad.',
+    details: [
+      'Diseño personalizado',
+      'Cocina integrada',
+      'Galería exterior',
+      'Sistema mixto',
+    ],
+  },
+  {
+    id: 2,
+    slug: 'cabana-valle-hermoso',
+    title: 'Cabaña - Valle Hermoso',
+    category: 'Steel framing',
+    system: 'Steel framing',
+    area: '90 m²',
+    location: 'Valle Hermoso, Córdoba',
+    year: '2025',
+    cover: cabañaValle,
+    gallery: [cabañaValle],
+    description:
+      'Proyecto ejecutado en steel framing, pensado para lograr una obra rápida, liviana y eficiente en un entorno natural.',
+    details: [
+      'Estructura liviana',
+      'Aislación térmica',
+      'Obra eficiente',
+      'Diseño adaptado al terreno',
+    ],
   },
 ]
 
