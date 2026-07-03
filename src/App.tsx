@@ -11,9 +11,11 @@ import ProyectosSection from './components/sections/ProyectosSection'
 import ServiciosSection from './components/sections/ServiciosSection'
 import TipologiasSection from './components/sections/TipologiasSection'
 import ContactoSection from './components/sections/ContactoSection'
+import CapacitacionesSection from './components/sections/CapacitacionesSection'
 
 import PortfolioPage from './pages/PortfolioPage'
 import ProjectDetailPage from './pages/ProjectDetailPage'
+import SistemaConstructivoPage from './pages/SistemaConstructivoPage'
 
 function HomePage() {
   return (
@@ -22,6 +24,7 @@ function HomePage() {
       <NosotrosSection />
       <ProyectosSection />
       <ServiciosSection />
+      <CapacitacionesSection />
       <TipologiasSection />
       <ContactoSection />
     </main>
@@ -38,6 +41,7 @@ export default function App() {
         <Route path="/" element={<HomePage />} />
         <Route path="/portfolio" element={<PortfolioPage />} />
         <Route path="/portfolio/:slug" element={<ProjectDetailPage />} />
+        <Route path="/sistema-constructivo" element={<SistemaConstructivoPage />} />
       </Routes>
 
       <Footer />

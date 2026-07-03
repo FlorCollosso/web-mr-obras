@@ -1,10 +1,9 @@
 import { useInView } from '../../hooks/useInView'
-import { useEffect, useState } from 'react'
 import SectionHeader from '../ui/SectionHeader'
 import { BENEFITS, PROCESS_STEPS } from '../../data'
 import BackgroundImage from '../../assets/images/fondo-web-grilla-bottom.jpg'
 import videoSteelFraming from '../../assets/videos/video-steel-framing.mp4'
-import SteelFramingLayers from '../ui/SteelFramingLayers'
+import { Link } from 'react-router-dom'
 
 const BENEFIT_GRADIENTS = [
   'linear-gradient(219deg, rgba(1,150,146,0.5) 0%, rgba(10,37,56,0.2) 72%)',
@@ -21,27 +20,6 @@ const ADVANTAGES = [
 
 export default function NosotrosSection() {
   const { ref, inView } = useInView()
-
-  const [showLayersModal, setShowLayersModal] = useState(false)
-
-  useEffect(() => {
-    document.body.style.overflow = showLayersModal ? 'hidden' : ''
-
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        setShowLayersModal(false)
-      }
-    }
-
-    if (showLayersModal) {
-      window.addEventListener('keydown', handleKeyDown)
-    }
-
-    return () => {
-      document.body.style.overflow = ''
-      window.removeEventListener('keydown', handleKeyDown)
-    }
-  }, [showLayersModal])
 
   return (
     <section
@@ -220,13 +198,12 @@ export default function NosotrosSection() {
               ))}
             </div>
 
-            <button
-              type="button"
-              onClick={() => setShowLayersModal(true)}
+            <Link
+              to="/sistema-constructivo"
               className="inline-flex items-center justify-center w-full bg-primary-600/80 hover:bg-primary-600 text-primary-100 font-bold text-base rounded-full px-8 py-3.5 transition-all duration-200 hover:scale-[1.02] shadow-cta backdrop-blur-sm"
             >
               Descubrí cómo funciona
-            </button>
+            </Link>
           </div>
 
           <div
@@ -250,46 +227,6 @@ export default function NosotrosSection() {
           </div>
         </div>
       </div>
-
-      {showLayersModal && (
-        <div
-          className="fixed inset-0 z-[100] bg-dark/80 backdrop-blur-md flex items-center justify-center px-4 py-6"
-          onClick={() => setShowLayersModal(false)}
-        >
-          <div
-            role="dialog"
-            aria-modal="true"
-            aria-label="Capas del sistema Steel Framing"
-            className="relative w-[min(900px,calc(100vw-32px))] h-[92svh] border border-white/10 overflow-hidden rounded-[28px] bg-dark/80 shadow-2xl"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="sticky top-0 z-10 flex items-center justify-between gap-4 border-b border-white/10 bg-dark-alt/95 backdrop-blur-md px-5 md:px-8 py-4">
-              <div>
-                <p className="text-xs uppercase tracking-widest font-bold text-primary-400">
-                  Sistema constructivo
-                </p>
-                <h3 className="text-xl md:text-2xl font-black text-white">
-                  Capas del Steel Framing
-                </h3>
-              </div>
-
-              <button
-                type="button"
-                onClick={() => setShowLayersModal(false)}
-                className="w-11 h-11 rounded-full bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-colors shrink-0"
-                aria-label="Cerrar ventana"
-              >
-                ✕
-              </button>
-            </div>
-
-            <div className="h-[calc(92svh-86px)] w-full overflow-hidden">
-              <SteelFramingLayers />
-            </div>
-          </div>
-        </div>
-      )}
-
     </section>
   )
 }

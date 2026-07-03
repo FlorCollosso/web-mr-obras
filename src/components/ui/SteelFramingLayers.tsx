@@ -35,7 +35,7 @@ const LAYERS: Layer[] = [
         description:
             'Placa interior que aporta terminación, protección y una superficie lista para pintar o revestir.',
         image: layer01,
-        marker: { top: '14%', left: '46%' },
+        marker: { top: '25%', left: '22%' },
         hotspot: { top: '4%', left: '20%', width: '34%', height: '76%' },
     },
     {
@@ -55,7 +55,7 @@ const LAYERS: Layer[] = [
         description:
             'Material aislante para mejorar el confort interior y reducir el consumo energético.',
         image: layer03,
-        marker: { top: '32%', left: '50%' },
+        marker: { top: '46%', left: '37%' },
         hotspot: { top: '24%', left: '31%', width: '30%', height: '45%' },
     },
     {
@@ -65,7 +65,7 @@ const LAYERS: Layer[] = [
         description:
             'Placa estructural que refuerza el muro y aporta mayor firmeza al sistema.',
         image: layer04,
-        marker: { top: '45%', left: '52%' },
+        marker: { top: '47%', left: '52%' },
         hotspot: { top: '36%', left: '38%', width: '34%', height: '32%' },
     },
     {
@@ -75,7 +75,7 @@ const LAYERS: Layer[] = [
         description:
             'Membrana protectora contra humedad, viento e infiltraciones exteriores.',
         image: layer05,
-        marker: { top: '54%', left: '53%' },
+        marker: { top: '66%', left: '40%' },
         hotspot: { top: '46%', left: '41%', width: '32%', height: '30%' },
     },
     {
@@ -95,7 +95,7 @@ const LAYERS: Layer[] = [
         description:
             'Placa de protección que mejora la resistencia y durabilidad del cerramiento.',
         image: layer07,
-        marker: { top: '75%', left: '54%' },
+        marker: { top: '88%', left: '40%' },
         hotspot: { top: '68%', left: '49%', width: '30%', height: '26%' },
     },
     {
@@ -105,7 +105,7 @@ const LAYERS: Layer[] = [
         description:
             'Terminación final del muro: plástica, texturada o cerámica según el proyecto.',
         image: layer08,
-        marker: { top: '82%', left: '62%' },
+        marker: { top: '80%', left: '62%' },
         hotspot: { top: '77%', left: '52%', width: '28%', height: '22%' },
     },
 ]
@@ -114,18 +114,24 @@ export default function SteelFramingLayers() {
     const [activeLayer, setActiveLayer] = useState<Layer>(LAYERS[0])
 
     return (
-        <div className="h-full w-full min-h-0 overflow-hidden">
-            <div className="relative h-full w-full">
+        <div className="w-full h-auto md:h-full min-h-0 overflow-visible md:overflow-hidden">
+            <div className="relative w-full h-auto md:h-full">
                 <div className="absolute inset-0 bg-grid-pattern opacity-35 pointer-events-none" />
                 <div className="absolute -bottom-20 -right-20 w-[420px] h-[420px] rounded-full bg-primary-600/10 blur-3xl pointer-events-none" />
 
-                <div className="relative h-full w-full p-6 sm:p-7 md:p-8 lg:p-9">
-                    <div className="grid h-full w-full grid-cols-1 md:grid-cols-[auto_minmax(280px,340px)] gap-4 md:gap-6 lg:gap-8 items-center justify-center">
+                <div className="relative w-full h-auto md:h-full p-5 sm:p-6 md:p-8 lg:p-9 xl:p-10">
+                    <div className="grid w-full max-w-[1080px] mx-auto h-auto md:h-full grid-cols-1 md:grid-cols-[minmax(380px,500px)_minmax(270px,330px)] xl:grid-cols-[minmax(460px,540px)_minmax(300px,360px)] gap-6 md:gap-7 lg:gap-10 items-start md:items-center justify-center">
 
                         {/* Muro */}
-                        <div className="relative flex h-full min-h-[260px] w-auto items-center justify-center overflow-visible">
+                        <div className="relative flex w-full md:w-auto min-h-[360px] sm:min-h-[420px] md:min-h-[260px] md:h-full items-center justify-center overflow-visible">
                             <div
-                                className="relative w-[clamp(260px,32vw,480px)] max-h-full"
+                                className="
+                                  relative shrink-0
+                                  w-[clamp(240px,78vw,390px)]
+                                  md:w-auto md:h-[clamp(430px,62svh,620px)]
+                                  xl:h-[clamp(460px,58svh,640px)]
+                                  max-w-full
+                                "
                                 style={{ aspectRatio: '700 / 900' }}
                             >
                                 {/* Capas */}
@@ -138,9 +144,9 @@ export default function SteelFramingLayers() {
                                             src={layer.image}
                                             alt={layer.title}
                                             className={`
-                                                absolute inset-0 h-full w-full object-contain select-none pointer-events-none
-                                                transition-all duration-300 ease-out
-                                                ${isActive
+                                            absolute inset-0 h-full w-full object-contain select-none pointer-events-none
+                                            transition-all duration-300 ease-out
+                                            ${isActive
                                                     ? 'opacity-100 brightness-105 drop-shadow-[0_0_10px_rgba(0,196,190,0.8)]'
                                                     : 'opacity-100 brightness-100'
                                                 }
@@ -160,11 +166,11 @@ export default function SteelFramingLayers() {
                                         onMouseEnter={() => setActiveLayer(layer)}
                                         onClick={() => setActiveLayer(layer)}
                                         className="
-      absolute z-40 cursor-pointer appearance-none border-0 bg-transparent
-      outline-none ring-0
-      focus:outline-none focus:ring-0
-      focus-visible:outline-none focus-visible:ring-0
-    "
+                    absolute z-40 cursor-pointer appearance-none border-0 bg-transparent
+                    outline-none ring-0
+                    focus:outline-none focus:ring-0
+                    focus-visible:outline-none focus-visible:ring-0
+                  "
                                         style={{
                                             top: layer.hotspot.top,
                                             left: layer.hotspot.left,
@@ -174,7 +180,6 @@ export default function SteelFramingLayers() {
                                     />
                                 ))}
 
-                                {/* Marcadores numerados sobre el muro */}
                                 {/* Marcadores numerados sobre el muro */}
                                 {LAYERS.map((layer) => {
                                     const isActive = activeLayer.id === layer.id
@@ -187,14 +192,14 @@ export default function SteelFramingLayers() {
                                             onFocus={() => setActiveLayer(layer)}
                                             onClick={() => setActiveLayer(layer)}
                                             className={`
-        absolute z-50 flex h-8 w-8 md:h-9 md:w-9 -translate-x-1/2 -translate-y-1/2
-        items-center justify-center rounded-full text-xs md:text-sm font-black
-        transition-all duration-200 outline-none
-        ${isActive
+                      absolute z-50 flex h-8 w-8 md:h-9 md:w-9 -translate-x-1/2 -translate-y-1/2
+                      items-center justify-center rounded-full text-xs md:text-sm font-black
+                      transition-all duration-200 outline-none
+                      ${isActive
                                                     ? 'bg-primary-300 text-dark scale-110 shadow-[0_0_14px_rgba(0,196,190,0.65)]'
                                                     : 'bg-dark/80 text-primary-200 border border-primary-400/50 hover:bg-primary-400 hover:text-dark'
                                                 }
-      `}
+                    `}
                                             style={{
                                                 top: layer.marker.top,
                                                 left: layer.marker.left,
@@ -208,8 +213,8 @@ export default function SteelFramingLayers() {
                             </div>
                         </div>
 
-                        {/* Lista derecha */}
-                        <div className="relative z-50 flex h-full min-h-0 flex-col justify-center gap-1.5 md:gap-2">
+                        {/* Lista derecha / abajo en mobile */}
+                        <div className="relative z-50 flex w-full  md:h-full min-h-0 flex-col justify-start md:justify-center gap-1.5 md:gap-2 justify-self-center md:justify-self-start">
                             {LAYERS.map((layer) => {
                                 const isActive = activeLayer.id === layer.id
 
