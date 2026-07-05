@@ -2,6 +2,8 @@ import { useEffect, useState } from 'react'
 import { useInView } from '../../hooks/useInView'
 import SectionHeader from '../ui/SectionHeader'
 
+import capacitacionMiramar from '../../assets/images/capacitacion-miramar-04.jpeg'
+
 const trainingImageModules = import.meta.glob(
   '../../assets/images/capacitacion-*.{jpeg,jpg,png,webp}',
   {
@@ -10,9 +12,12 @@ const trainingImageModules = import.meta.glob(
   }
 ) as Record<string, string>
 
-const TRAINING_IMAGES = Object.entries(trainingImageModules)
+const GALLERY_IMAGES = Object.entries(trainingImageModules)
+  .filter(([path]) => !path.includes('capacitacion-miramar-04.jpeg'))
   .sort(([a], [b]) => a.localeCompare(b))
   .map(([, src]) => src)
+
+const TRAINING_IMAGES = [capacitacionMiramar, ...GALLERY_IMAGES]
 
 const COURSE_CONTENT = [
   'Introducción a la construcción en seco',
@@ -97,16 +102,15 @@ export default function CapacitacionesSection() {
         />
 
         <div
-          className={`grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-6 lg:gap-8 transition-all duration-700 ${
-            inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
+          className={`grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-6 lg:gap-8 items-stretch transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
         >
           {/* Columna visual */}
-          <div className="space-y-5">
+          <div className="flex h-full min-h-0 flex-col gap-5">
             <button
               type="button"
               onClick={() => setActiveImageIndex(0)}
-              className="relative w-full min-h-[420px] lg:min-h-[560px] rounded-[24px] overflow-hidden group shadow-xl border border-white/30 text-left"
+              className="relative w-full flex-1 min-h-[380px] rounded-[24px] overflow-hidden group shadow-xl border border-white/30 text-left"
               aria-label="Abrir imagen principal del curso"
             >
               {mainImage && (
@@ -125,24 +129,6 @@ export default function CapacitacionesSection() {
                 </span>
               </div>
 
-              <div className="absolute top-5 right-5 flex h-11 w-11 items-center justify-center rounded-full bg-dark/50 text-white backdrop-blur-md border border-white/20 opacity-0 group-hover:opacity-100 transition-opacity">
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2.3"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M15 3h6v6" />
-                  <path d="M10 14L21 3" />
-                  <path d="M9 21H3v-6" />
-                  <path d="M14 10L3 21" />
-                </svg>
-              </div>
-
               <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
                 <p className="text-2xl md:text-3xl font-black text-white leading-tight max-w-[620px]">
                   Curso de construcción en seco para municipios e instituciones
@@ -153,16 +139,16 @@ export default function CapacitacionesSection() {
                 </p>
 
                 <p className="mt-4 max-w-[680px] text-white/70 leading-relaxed">
-                  MR Obras dicta capacitaciones contratadas por municipalidades
-                  de la provincia de Córdoba, acercando herramientas concretas
-                  de formación laboral a distintas comunidades.
+                  MR Obras dicta capacitaciones contratadas por municipalidades de la
+                  provincia de Córdoba, acercando herramientas concretas de formación
+                  laboral a distintas comunidades.
                 </p>
               </div>
             </button>
 
             {galleryImages.length > 0 && (
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                {galleryImages.slice(0, 4).map((image, index) => {
+              <div className="grid grid-cols-3 gap-4 shrink-0">
+                {galleryImages.slice(0, 3).map((image, index) => {
                   const imageIndex = index + 1
 
                   return (
@@ -170,7 +156,7 @@ export default function CapacitacionesSection() {
                       key={image}
                       type="button"
                       onClick={() => setActiveImageIndex(imageIndex)}
-                      className="relative h-36 md:h-40 rounded-[18px] overflow-hidden border border-white/40 shadow-lg group"
+                      className="relative h-36 md:h-40 lg:h-44 rounded-[18px] overflow-hidden border border-white/40 shadow-lg group"
                       aria-label={`Abrir imagen del curso ${imageIndex + 1}`}
                     >
                       <img
@@ -180,26 +166,7 @@ export default function CapacitacionesSection() {
                       />
 
                       <div className="absolute inset-0 bg-gradient-to-b from-transparent to-dark-alt/50" />
-
                       <div className="absolute inset-0 bg-primary-500/0 group-hover:bg-primary-500/10 transition-colors" />
-
-                      <div className="absolute top-3 right-3 flex h-8 w-8 items-center justify-center rounded-full bg-dark/50 text-white backdrop-blur-md border border-white/20 opacity-0 group-hover:opacity-100 transition-opacity">
-                        <svg
-                          width="16"
-                          height="16"
-                          viewBox="0 0 24 24"
-                          fill="none"
-                          stroke="currentColor"
-                          strokeWidth="2.4"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                        >
-                          <path d="M15 3h6v6" />
-                          <path d="M10 14L21 3" />
-                          <path d="M9 21H3v-6" />
-                          <path d="M14 10L3 21" />
-                        </svg>
-                      </div>
                     </button>
                   )
                 })}
@@ -208,7 +175,8 @@ export default function CapacitacionesSection() {
           </div>
 
           {/* Columna de contenido */}
-          <div className="grid grid-cols-1 gap-5">
+          <div className="flex flex-col gap-5">
+            {/* Bloque 1 */}
             <div className="relative rounded-[24px] overflow-hidden border border-white/30 shadow-xl bg-gradient-to-br from-primary-600 to-dark-alt p-6 md:p-7">
               <div className="absolute inset-0 bg-grid-pattern opacity-20 pointer-events-none" />
               <div className="absolute -top-20 -right-20 w-[260px] h-[260px] rounded-full bg-white/15 blur-3xl pointer-events-none" />
@@ -223,13 +191,14 @@ export default function CapacitacionesSection() {
                 </h3>
 
                 <p className="mt-4 text-white/70 leading-relaxed">
-                  El curso está orientado a personas que buscan incorporar
-                  conocimientos básicos sobre construcción en seco, materiales,
-                  herramientas y criterios iniciales de armado.
+                  El curso está orientado a personas que buscan incorporar conocimientos
+                  básicos sobre construcción en seco, materiales, herramientas y
+                  criterios iniciales de armado.
                 </p>
               </div>
             </div>
 
+            {/* Bloque 2 */}
             <div className="relative rounded-[24px] overflow-hidden border border-white/30 shadow-xl bg-white/45 backdrop-blur-md p-6 md:p-7">
               <div className="absolute inset-0 bg-gradient-to-br from-white/35 to-primary-500/10 pointer-events-none" />
 
@@ -251,6 +220,7 @@ export default function CapacitacionesSection() {
               </div>
             </div>
 
+            {/* Bloque 3 */}
             <div className="relative rounded-[24px] overflow-hidden border border-white/30 shadow-xl bg-white/45 backdrop-blur-md p-6 md:p-7">
               <div className="absolute inset-0 bg-gradient-to-br from-white/35 to-primary-500/10 pointer-events-none" />
 
@@ -261,14 +231,12 @@ export default function CapacitacionesSection() {
 
                 <p className="mt-4 text-primary-900/70 leading-relaxed">
                   La capacitación puede adaptarse según la localidad, el espacio
-                  disponible, la duración del encuentro y el perfil de los
-                  participantes.
+                  disponible, la duración del encuentro y el perfil de los participantes.
                 </p>
 
-                <p className="mt-4 text-primary-900/70 leading-relaxed">
-                  Es una forma de acercar un oficio con demanda actual,
-                  promoviendo formación práctica y oportunidades laborales en la
-                  comunidad.
+                <p className="mt-3 text-primary-900/70 leading-relaxed">
+                  Es una forma de acercar un oficio con demanda actual, promoviendo
+                  formación práctica y oportunidades laborales en la comunidad.
                 </p>
               </div>
             </div>
