@@ -29,7 +29,7 @@
 
   /* Section badge pill */
   .section-badge {
-    @apply backdrop-blur-md bg-white/20 border border-white/20 text-primary-300 font-bold text-sm rounded-full px-5 py-2 shadow-badge;
+    @apply bg-white/20 border border-white/20 text-primary-300 font-bold text-sm rounded-full px-5 py-1.5 shadow-badge shrink-0 backdrop-blur-lg mt-2;
   }
 
   /* CTA pill button */

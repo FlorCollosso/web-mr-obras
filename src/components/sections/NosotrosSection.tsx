@@ -170,17 +170,26 @@ export default function NosotrosSection() {
             className={`transition-all duration-700 ${inView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
               }`}
           >
-            <span className="section-badge">Sistema constructivo</span>
-
-            <h2 className="mt-8 text-4xl md:text-4xl lg:text-5xl font-black text-white leading-[1.2] mb-5">
-              Steel Framing: el sistema que
-              <span className="text-primary-400"> construye el futuro.</span>
-            </h2>
-
-            <p className="text-base md:text-lg text-white/70 leading-relaxed mb-8">
-              Combinamos experiencia en construcción tradicional con sistemas modernos
-              para desarrollar viviendas eficientes, duraderas y adaptadas a cada proyecto.
-            </p>
+            <SectionHeader
+              badge="Sistema constructivo"
+              badgePosition="top"
+              as="h1"
+              theme="dark"
+              title={
+                <>
+                  Steel Framing: el sistema que{' '}
+                  <span className="text-primary-500">
+                    construye el futuro.
+                  </span>
+                </>
+              }
+              description={
+                <>
+                  Combinamos experiencia en construcción tradicional con sistemas modernos
+                  para desarrollar viviendas eficientes, duraderas y adaptadas a cada proyecto.
+                </>
+              }
+            />
 
             <div className="w-full inline-flex flex-col items-start gap-3 mb-10">
               {ADVANTAGES.map((adv, i) => (

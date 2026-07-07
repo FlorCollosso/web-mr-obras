@@ -33,7 +33,7 @@ const LAYERS: Layer[] = [
         number: '1',
         title: 'Muro interior',
         description:
-            'Placa interior que aporta terminación, protección y una superficie lista para pintar o revestir.',
+            'Placa interior que aporta protección y una superficie lista para pintar o revestir.',
         image: layer01,
         marker: { top: '25%', left: '22%' },
         hotspot: { top: '4%', left: '20%', width: '34%', height: '76%' },
@@ -93,7 +93,7 @@ const LAYERS: Layer[] = [
         number: '7',
         title: 'Protección exterior',
         description:
-            'Placa de protección que mejora la resistencia y durabilidad del cerramiento.',
+            'Placa que mejora la resistencia y durabilidad del cerramiento.',
         image: layer07,
         marker: { top: '88%', left: '40%' },
         hotspot: { top: '68%', left: '49%', width: '30%', height: '26%' },
@@ -114,26 +114,35 @@ export default function SteelFramingLayers() {
     const [activeLayer, setActiveLayer] = useState<Layer>(LAYERS[0])
 
     return (
-        <div className="w-full h-auto md:h-full min-h-0 overflow-visible md:overflow-hidden">
-            <div className="relative w-full h-auto md:h-full">
-                <div className="absolute inset-0 bg-grid-pattern opacity-35 pointer-events-none" />
-                <div className="absolute -bottom-20 -right-20 w-[420px] h-[420px] rounded-full bg-primary-600/10 blur-3xl pointer-events-none" />
+        <div className="h-full w-full overflow-hidden">
+            <div className="relative h-full w-full">
+                <div className="absolute inset-0 pointer-events-none" />
 
-                <div className="relative w-full h-auto md:h-full p-5 sm:p-6 md:p-8 lg:p-9 xl:p-10">
-                    <div className="grid w-full max-w-[1080px] mx-auto h-auto md:h-full grid-cols-1 md:grid-cols-[minmax(380px,500px)_minmax(270px,330px)] xl:grid-cols-[minmax(460px,540px)_minmax(300px,360px)] gap-6 md:gap-7 lg:gap-10 items-start md:items-center justify-center">
+                <div className="relative w-full h-full py-5 px-7">
+                    <div className="grid w-full h-full max-w-[820px] mx-auto grid-cols-1 lg:grid-cols-[auto_minmax(300px,360px)] gap-4 lg:gap-4 items-center justify-center">
 
                         {/* Muro */}
-                        <div className="relative flex w-full md:w-auto min-h-[360px] sm:min-h-[420px] md:min-h-[260px] md:h-full items-center justify-center overflow-visible">
+                        <div className="relative order-1 flex w-auto items-center justify-center overflow-visible">
+                            {/* Viewport visual: esto define cuánto ocupa el muro en el layout */}
                             <div
                                 className="
-                                  relative shrink-0
-                                  w-[clamp(240px,78vw,390px)]
-                                  md:w-auto md:h-[clamp(430px,62svh,620px)]
-                                  xl:h-[clamp(460px,58svh,640px)]
-                                  max-w-full
+                                relative shrink-0 overflow-visible
+                                w-[clamp(230px,72vw,330px)]
+                                md:w-[clamp(300px,40vw,360px)]
+                                lg:w-[320px]
+                                max-w-full
                                 "
-                                style={{ aspectRatio: '700 / 900' }}
+                                style={{ aspectRatio: '500 / 750' }}
                             >
+                                {/* Canvas real: mantiene el tamaño original de los PNG */}
+                                <div
+                                    className="absolute top-0 h-full"
+                                    style={{
+                                        aspectRatio: '700 / 850',
+                                        left: '-22%',
+                                    }}
+                                >
+                                </div>
                                 {/* Capas */}
                                 {LAYERS.map((layer, index) => {
                                     const isActive = activeLayer.id === layer.id
@@ -214,7 +223,7 @@ export default function SteelFramingLayers() {
                         </div>
 
                         {/* Lista derecha / abajo en mobile */}
-                        <div className="relative z-50 flex w-full  md:h-full min-h-0 flex-col justify-start md:justify-center gap-1.5 md:gap-2 justify-self-center md:justify-self-start">
+                        <div className="relative z-50 order-2 flex w-full max-w-[360px] min-h-0 flex-col justify-center gap-2 justify-self-center lg:justify-self-start">
                             {LAYERS.map((layer) => {
                                 const isActive = activeLayer.id === layer.id
 
@@ -225,14 +234,14 @@ export default function SteelFramingLayers() {
                                         onMouseEnter={() => setActiveLayer(layer)}
                                         onFocus={() => setActiveLayer(layer)}
                                         onClick={() => setActiveLayer(layer)}
-                                        className={`group text-left rounded-xl border px-3 py-2 md:px-3.5 md:py-2.5 transition-all duration-200 ${isActive
+                                        className={`group text-left rounded-xl border px-4 py-3 transition-all duration-200 ${isActive
                                             ? 'bg-primary-500/18 border-primary-400 shadow-[0_0_8px_rgba(0,196,190,0.16)]'
                                             : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-primary-500/40'
                                             }`}
                                     >
                                         <div className="flex items-start gap-2.5">
                                             <span
-                                                className={`flex h-7 w-7 md:h-8 md:w-8 shrink-0 items-center justify-center rounded-full text-xs md:text-sm font-black transition-all duration-200 ${isActive
+                                                className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-black transition-all duration-200 ${isActive
                                                     ? 'bg-primary-300 text-dark shadow-[0_0_16px_rgba(0,196,190,0.7)]'
                                                     : 'bg-primary-500/70 text-white group-hover:bg-primary-700 group-hover:text-dark'
                                                     }`}
@@ -242,14 +251,14 @@ export default function SteelFramingLayers() {
 
                                             <div className="min-w-0">
                                                 <p
-                                                    className={`text-xs md:text-sm font-black leading-tight transition-colors ${isActive ? 'text-primary-200' : 'text-white'
+                                                    className={`text-[14px] md:text-[15px] font-black leading-tight transition-colors ${isActive ? 'text-primary-200' : 'text-white'
                                                         }`}
                                                 >
                                                     {layer.title}
                                                 </p>
 
                                                 {isActive && (
-                                                    <p className="mt-1 text-[11px] md:text-xs leading-relaxed text-white/70">
+                                                    <p className="mt-1 text-[12px] md:text-[13px] text-white/70">
                                                         {layer.description}
                                                     </p>
                                                 )}

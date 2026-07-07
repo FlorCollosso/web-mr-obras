@@ -60,11 +60,10 @@ function PanoViewer({ typologyId }: { typologyId: number }) {
             key={view.id}
             type="button"
             onClick={() => setActiveView(view)}
-            className={`rounded-full px-4 py-2 text-xs font-bold transition-all duration-200 ${
-              activeView.id === view.id
+            className={`rounded-full px-4 py-2 text-xs font-bold transition-all duration-200 ${activeView.id === view.id
                 ? 'bg-primary-500 text-dark shadow-lg shadow-primary-500/20'
                 : 'bg-white/8 text-white/70 hover:bg-white/14 hover:text-white'
-            }`}
+              }`}
           >
             {view.label}
           </button>
@@ -138,11 +137,10 @@ function TypologyCard({ typo }: { typo: typeof TYPOLOGIES[0] }) {
             <button
               type="button"
               onClick={() => setShowTour((v) => !v)}
-              className={`flex items-center gap-2 px-5 py-2 rounded-full border font-bold text-sm transition-all duration-200 ${
-                showTour
+              className={`flex items-center gap-2 px-5 py-2 rounded-full border font-bold text-sm transition-all duration-200 ${showTour
                   ? 'bg-primary-600/60 border-primary-500 text-primary-100'
                   : 'bg-white/10 border-white/20 text-white hover:bg-white/20'
-              }`}
+                }`}
             >
               <svg
                 width="14"
@@ -172,9 +170,8 @@ function TypologyCard({ typo }: { typo: typeof TYPOLOGIES[0] }) {
       </div>
 
       <div
-        className={`overflow-hidden transition-all duration-500 ease-in-out ${
-          showTour ? 'max-h-[720px] opacity-100' : 'max-h-0 opacity-0'
-        }`}
+        className={`overflow-hidden transition-all duration-500 ease-in-out ${showTour ? 'max-h-[720px] opacity-100' : 'max-h-0 opacity-0'
+          }`}
       >
         <div className="p-5 pt-5">
           <PanoViewer typologyId={typo.id} />
@@ -206,17 +203,17 @@ export default function TipologiasSection() {
               <span className="text-primary-500">cada etapa&nbsp;de&nbsp;vida</span>
             </>
           }
+          description={
+            <>
+              Dos tipologías de acceso pensadas para optimizar cada metro cuadrado.
+              Ambas disponibles en steel framing o construcción tradicional.
+            </>
+          }
         />
 
-        <p className="text-1md md:text-2md lg:text-4md text-white/70 max-w-2xl mb-12 leading-relaxed">
-          Dos tipologías de acceso pensadas para optimizar cada metro cuadrado.
-          Ambas disponibles en steel framing o construcción tradicional.
-        </p>
-
         <div
-          className={`flex flex-col gap-8 transition-all duration-700 ${
-            inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-          }`}
+          className={`flex flex-col gap-8 transition-all duration-700 ${inView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+            }`}
         >
           {TYPOLOGIES.map((t) => (
             <TypologyCard key={t.id} typo={t} />
