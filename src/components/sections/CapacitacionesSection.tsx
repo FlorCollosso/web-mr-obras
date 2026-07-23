@@ -95,7 +95,7 @@ export default function CapacitacionesSection() {
             <>
               También enseñamos{' '}
               <span className="text-primary-500">
-                construcción en seco
+                construcción <br /> en seco
               </span>
             </>
           }
@@ -203,7 +203,7 @@ export default function CapacitacionesSection() {
               <div className="absolute inset-0 bg-gradient-to-br from-white/35 to-primary-500/10 pointer-events-none" />
 
               <div className="relative">
-                <h3 className="text-2xl font-black text-primary-900 leading-tight">
+                <h3 className="text-2xl font-black text-primary-800 leading-tight">
                   ¿Qué se trabaja en el curso?
                 </h3>
 
@@ -225,7 +225,7 @@ export default function CapacitacionesSection() {
               <div className="absolute inset-0 bg-gradient-to-br from-white/35 to-primary-500/10 pointer-events-none" />
 
               <div className="relative">
-                <h3 className="text-2xl font-black text-primary-900 leading-tight">
+                <h3 className="text-2xl font-black text-primary-800 leading-tight">
                   Para municipios, comunas e instituciones
                 </h3>
 

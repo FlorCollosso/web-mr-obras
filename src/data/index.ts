@@ -1,8 +1,34 @@
-import casaArroyitoCocina from '../assets/images/donpablo-mixta-cocina.jpeg'
+import casaArroyitoCocina02 from '../assets/images/donpablo-mixta-cocina-02.jpeg'
+import casaArroyitoCocina01 from '../assets/images/donpablo-mixta-cocina-01.jpeg'
+import casaArroyitobano01 from '../assets/images/donpablo-mixta-bano-01.jpeg'
+import casaArroyitocomedor01 from '../assets/images/donpablo-mixta-comedor-01.jpeg'
+import casaArroyitopatio01 from '../assets/images/donpablo-mixta-patio-01.jpeg'
+import casaArroyitopatio02 from '../assets/images/donpablo-mixta-patio-02.jpeg'
 import casaArroyitoFrente from '../assets/images/donpablo-mixta-frente.jpeg'
-import cabañaValle from '../assets/images/casa-valle-steelframing.jpeg'
+import casaValle01 from '../assets/images/casa-valle-01.jpeg'
+import casaValle02 from '../assets/images/casa-valle-02.jpg'
+import casaValle04 from '../assets/images/casa-valle-04.jpeg'
+import casaValle05 from '../assets/images/casa-valle-05.jpg'
 import casaCompacta from '../assets/images/casa-compacta.png'
 import casaFamiliar from '../assets/images/casa-familiar.png'
+import vestidorLaFrancia01 from '../assets/images/vestidor-la-francia-01.png'
+import vestidorLaFrancia02 from '../assets/images/vestidor-la-francia-02.jpeg'
+import vestidorLaFrancia03 from '../assets/images/vestidor-la-francia-03.jpeg'
+import vestidorLaFrancia04 from '../assets/images/vestidor-la-francia-04.jpeg'
+import vestidorLaFrancia05 from '../assets/images/vestidor-la-francia-05.jpeg'
+import reformaArmarioLaFrancia01 from '../assets/images/reforma-armario-la-francia-01.jpeg'
+import reformaArmarioLaFrancia02 from '../assets/images/reforma-armario-la-francia-02.jpg'
+import reformaArmarioLaFrancia03 from '../assets/images/reforma-armario-la-francia-03.jpg'
+import reformaArmarioLaFrancia04 from '../assets/images/reforma-armario-la-francia-04.jpg'
+import reformaRecibidorElTio01 from '../assets/images/reforma-recibidor-el-tio-01.jpeg'
+import reformaRecibidorElTio02 from '../assets/images/reforma-recibidor-el-tio-02.jpeg'
+import reformaRecibidorElTio03 from '../assets/images/reforma-recibidor-el-tio-03.jpeg'
+import reformaRecibidorElTio04 from '../assets/images/reforma-recibidor-el-tio-04.jpeg'
+import reformaRecibidorElTio05 from '../assets/images/reforma-recibidor-el-tio-05.jpeg'
+import divisionOficinaElTio01 from '../assets/images/division-oficina-el-tio-01.jpg'
+import divisionOficinaElTio02 from '../assets/images/division-oficina-el-tio-02.jpg'
+import divisionOficinaElTio03 from '../assets/images/division-oficina-el-tio-03.jpg'
+import divisionOficinaElTio04 from '../assets/images/division-oficina-el-tio-04.jpg'
 
 // ─── Hero Slides ───────────────────────────────────────────────────────────────
 export const HERO_SLIDES = [
@@ -66,21 +92,21 @@ export const PROJECTS = [
     id: 1,
     slug: 'casa-familiar-arroyito',
     title: 'Casa Familiar - Arroyito',
-    subtitle: 'Sistema mixto - 120 m²',
-    image: casaArroyitoCocina,
+    subtitle: 'Construcción tradicional - 180 m²',
+    image: casaArroyitoCocina02,
     featured: true,
   },
   {
     id: 2,
     slug: 'cabana-valle-hermoso',
     title: 'Cabaña - Valle Hermoso',
-    subtitle: 'Steel framing - 90 m²',
-    image: cabañaValle,
+    subtitle: 'Steel Framing - 60 m²',
+    image: casaValle01,
   },
   {
     id: 3,
-    slug: 'casa-garcia-cordoba',
-    title: 'Casa García - Córdoba',
+    slug: 'casa-familiar-el-tio',
+    title: 'Casa Familiar - El Tío',
     subtitle: 'Construcción tradicional - 85 m²',
     image: 'https://images.unsplash.com/photo-1570129477492-45c003edd2be?w=600&q=80',
   },
@@ -96,7 +122,7 @@ export const PROJECTS = [
     slug: 'vestidor-la-francia',
     title: 'Vestidor - La Francia',
     subtitle: 'Steel framing - 30 m²',
-    image: 'https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?w=600&q=80',
+    image: vestidorLaFrancia01,
   },
 ]
 
@@ -107,19 +133,19 @@ export const PORTFOLIO_PROJECTS = [
     slug: 'casa-familiar-arroyito',
     title: 'Casa Familiar - Arroyito',
     category: 'Viviendas',
-    system: 'Sistema mixto',
-    area: '120 m²',
-    location: 'Arroyito, Córdoba',
+    system: 'Construcción tradicional',
+    area: '180 m²',
+    location: 'Arroyito, Cba.',
     year: '2025',
     cover: casaArroyitoFrente,
-    gallery: [casaArroyitoFrente, casaArroyitoCocina],
+    gallery: [casaArroyitoFrente, casaArroyitoCocina01, casaArroyitoCocina02, casaArroyitobano01, casaArroyitocomedor01, casaArroyitopatio01, casaArroyitopatio02],
     description:
-      'Vivienda familiar desarrollada con sistema mixto, combinando construcción tradicional y soluciones en seco para optimizar tiempos, terminaciones y funcionalidad.',
+      'Vivienda familiar construida de manera tradicional, combinando soluciones en seco para optimizar tiempos, terminaciones y funcionalidad.',
     details: [
       'Diseño personalizado',
-      'Cocina integrada',
-      'Galería exterior',
-      'Sistema mixto',
+      'Concepto abierto y funcional',
+      'Terminaciones en piedra y cemento alisado',
+      'Detalles en Steel Framing',
     ],
   },
   {
@@ -128,20 +154,100 @@ export const PORTFOLIO_PROJECTS = [
     title: 'Cabaña - Valle Hermoso',
     category: 'Steel framing',
     system: 'Steel framing',
-    area: '90 m²',
-    location: 'Valle Hermoso, Córdoba',
-    year: '2025',
-    cover: cabañaValle,
-    gallery: [cabañaValle],
+    area: '60 m²',
+    location: 'Valle Hermoso, Cba.',
+    year: '2026',
+    cover: casaValle01,
+    gallery: [casaValle01, casaValle02, casaValle04, casaValle05],
     description:
-      'Proyecto ejecutado en steel framing, pensado para lograr una obra rápida, liviana y eficiente en un entorno natural.',
+      'Proyecto ejecutado en steel framing, pensado para lograr una obra rápida, liviana y eficiente en un entorno natural. Vivienda autosustentable, abastecida de energía solar y eólica, con termo solar incluído.',
     details: [
-      'Estructura liviana',
-      'Aislación térmica',
-      'Obra eficiente',
+      'Vivenda autosustentable',
+      'Aislación térmica y acústica',
+      'Detalles en piedra natural',
       'Diseño adaptado al terreno',
     ],
   },
+  {
+    id: 3,
+    slug: 'vestidor-la-francia',
+    title: 'Vestidor - La Francia',
+    category: 'Steel framing',
+    system: 'Steel framing',
+    area: '3 m²',
+    location: 'La Francia, Cba.',
+    year: '2026',
+    cover: vestidorLaFrancia01,
+    gallery: [vestidorLaFrancia02, vestidorLaFrancia03, vestidorLaFrancia04, vestidorLaFrancia05],
+    description:
+      'Vestidor ejecutado en steel framing, pensado para lograr una obra rápida, liviana y eficiente. Diseño adaptado a las necesidades del cliente, con terminaciones de alta calidad y funcionalidad.',
+    details: [
+      'Diseño moderno y funcional',
+      'Terminaciones de alta calidad',
+      'Obra rápida y eficiente',
+      'Adaptado a las necesidades del cliente',
+    ],
+  },
+  {
+    id: 4,
+    slug: 'reforma-armario-la-francia',
+    title: 'Armario - La Francia',
+    category: 'Reformas',
+    system: 'Steel framing',
+    area: '4,40 x 2,60 x 0,50 m',
+    location: 'La Francia, Cba.',
+    year: '2024',
+    cover: reformaArmarioLaFrancia01,
+    gallery: [reformaArmarioLaFrancia01, reformaArmarioLaFrancia02, reformaArmarioLaFrancia03, reformaArmarioLaFrancia04],
+    description:
+      'Reforma de armario ejecutada en steel framing, pensada para lograr una obra rápida, liviana y eficiente. Diseño adaptado a las necesidades del cliente, con terminaciones de alta calidad y funcionalidad.',
+    details: [
+      'Diseño moderno y funcional',
+      'Terminaciones de alta calidad',
+      'Obra rápida y eficiente',
+      'Adaptado a las necesidades del cliente',
+    ],
+  },
+  {
+    id: 5,
+    slug: 'reforma-recibidor-el-tio',
+    title: 'Recibidor - El Tío',
+    category: 'Reformas',
+    system: 'Steel framing',
+    area: '2,60 x 2,00 x 1,20 m',
+    location: 'El Tío, Cba.',
+    year: '2024',
+    cover: reformaRecibidorElTio05,
+    gallery: [reformaRecibidorElTio01, reformaRecibidorElTio02, reformaRecibidorElTio03, reformaRecibidorElTio04],
+    description:
+      'Reforma de recibidor ejecutada en steel framing, pensada para lograr una obra rápida, liviana y eficiente. Diseño adaptado a las necesidades del cliente, con terminaciones de alta calidad y funcionalidad.',
+    details: [
+      'Diseño moderno y funcional',
+      'Terminaciones de alta calidad',
+      'Obra rápida y eficiente',
+      'Adaptado a las necesidades del cliente',
+    ],
+  },
+  {
+    id: 6,
+    slug: 'division-oficina-el-tio',
+    title: 'División de Oficina - El Tío',
+    category: 'Reformas',
+    system: 'Steel framing',
+    area: '3,00 x 2,00 x 2,80 m',
+    location: 'El Tío, Cba.',
+    year: '2024',
+    cover: divisionOficinaElTio01,
+    gallery: [divisionOficinaElTio01, divisionOficinaElTio02, divisionOficinaElTio03, divisionOficinaElTio04],
+    description:
+      'División de oficina ejecutada en steel framing, pensada para lograr una obra rápida, liviana y eficiente. Diseño adaptado a las necesidades del cliente, con terminaciones de alta calidad y funcionalidad.',
+    details: [
+      'Diseño moderno y funcional',
+      'Terminaciones de alta calidad',
+      'Obra rápida y eficiente',
+      'Adaptado a las necesidades del cliente',
+    ],
+  }
 ]
 
 // ─── Services ──────────────────────────────────────────────────────────────────
@@ -177,7 +283,7 @@ export const SERVICES = [
 export const TYPOLOGIES = [
   {
     id: '36',
-    name: 'Tipología A — Compact',
+    name: 'Tipología A — Compacta',
     area: 36,
     badge: 'Entrada ideal',
     description:
@@ -187,7 +293,7 @@ export const TYPOLOGIES = [
   },
   {
     id: '42',
-    name: 'Tipología B — Family',
+    name: 'Tipología B — Familiar',
     area: 42,
     badge: 'Más elegida',
     description:

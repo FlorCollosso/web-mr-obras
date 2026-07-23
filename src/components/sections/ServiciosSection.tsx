@@ -32,7 +32,7 @@ export default function ServiciosSection() {
           title={
             <>
               Todo lo que necesitás para{' '}
-              <span className="text-primary-500">construir tu casa</span>
+              <span className="text-primary-500">construir <br /> tu casa</span>
             </>
           }
         />

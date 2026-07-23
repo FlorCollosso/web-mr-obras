@@ -174,7 +174,7 @@ function TypologyCard({ typo }: { typo: typeof TYPOLOGIES[0] }) {
           }`}
       >
         <div className="p-5 pt-5">
-          <PanoViewer typologyId={typo.id} />
+          <PanoViewer typologyId={parseInt(typo.id)} />
         </div>
       </div>
     </div>

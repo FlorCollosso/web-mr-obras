@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 import layer01 from '../../assets/images/steel-framing/layer-01-muro-interior.png'
 import layer02 from '../../assets/images/steel-framing/layer-02-perfiles.png'
@@ -35,7 +35,7 @@ const LAYERS: Layer[] = [
         description:
             'Placa interior que aporta protección y una superficie lista para pintar o revestir.',
         image: layer01,
-        marker: { top: '25%', left: '22%' },
+        marker: { top: '18%', left: '27%' },
         hotspot: { top: '4%', left: '20%', width: '34%', height: '76%' },
     },
     {
@@ -45,7 +45,7 @@ const LAYERS: Layer[] = [
         description:
             'Perfiles livianos y resistentes que forman la estructura principal del muro.',
         image: layer02,
-        marker: { top: '24%', left: '42%' },
+        marker: { top: '24%', left: '40%' },
         hotspot: { top: '14%', left: '28%', width: '30%', height: '52%' },
     },
     {
@@ -55,7 +55,7 @@ const LAYERS: Layer[] = [
         description:
             'Material aislante para mejorar el confort interior y reducir el consumo energético.',
         image: layer03,
-        marker: { top: '46%', left: '37%' },
+        marker: { top: '46%', left: '32%' },
         hotspot: { top: '24%', left: '31%', width: '30%', height: '45%' },
     },
     {
@@ -65,7 +65,7 @@ const LAYERS: Layer[] = [
         description:
             'Placa estructural que refuerza el muro y aporta mayor firmeza al sistema.',
         image: layer04,
-        marker: { top: '47%', left: '52%' },
+        marker: { top: '48%', left: '52%' },
         hotspot: { top: '36%', left: '38%', width: '34%', height: '32%' },
     },
     {
@@ -75,7 +75,7 @@ const LAYERS: Layer[] = [
         description:
             'Membrana protectora contra humedad, viento e infiltraciones exteriores.',
         image: layer05,
-        marker: { top: '66%', left: '40%' },
+        marker: { top: '63%', left: '40%' },
         hotspot: { top: '46%', left: '41%', width: '32%', height: '30%' },
     },
     {
@@ -85,7 +85,7 @@ const LAYERS: Layer[] = [
         description:
             'Capa exterior que mejora el rendimiento térmico y prepara la superficie.',
         image: layer06,
-        marker: { top: '65%', left: '56%' },
+        marker: { top: '68%', left: '56%' },
         hotspot: { top: '57%', left: '45%', width: '32%', height: '28%' },
     },
     {
@@ -95,7 +95,7 @@ const LAYERS: Layer[] = [
         description:
             'Placa que mejora la resistencia y durabilidad del cerramiento.',
         image: layer07,
-        marker: { top: '88%', left: '40%' },
+        marker: { top: '85%', left: '40%' },
         hotspot: { top: '68%', left: '49%', width: '30%', height: '26%' },
     },
     {
@@ -105,171 +105,169 @@ const LAYERS: Layer[] = [
         description:
             'Terminación final del muro: plástica, texturada o cerámica según el proyecto.',
         image: layer08,
-        marker: { top: '80%', left: '62%' },
+        marker: { top: '85%', left: '62%' },
         hotspot: { top: '77%', left: '52%', width: '28%', height: '22%' },
     },
 ]
 
 export default function SteelFramingLayers() {
     const [activeLayer, setActiveLayer] = useState<Layer>(LAYERS[0])
+    const [selectedLayer, setSelectedLayer] = useState<Layer | null>(null)
+
+    const toggleLayer = (layer: Layer) => {
+        setActiveLayer(layer)
+        setSelectedLayer((current) => (current?.id === layer.id ? null : layer))
+    }
+
+    const closeTooltip = () => setSelectedLayer(null)
+
+    useEffect(() => {
+        if (!selectedLayer) return
+
+        const handleKeyDown = (event: KeyboardEvent) => {
+            if (event.key === 'Escape') closeTooltip()
+        }
+
+        window.addEventListener('keydown', handleKeyDown)
+
+        return () => window.removeEventListener('keydown', handleKeyDown)
+    }, [selectedLayer])
 
     return (
-        <div className="h-full w-full overflow-hidden">
-            <div className="relative h-full w-full">
+        <div className="h-full w-full overflow-visible">
+            <div className="relative flex h-full w-full flex-col">
                 <div className="absolute inset-0 pointer-events-none" />
 
-                <div className="relative w-full h-full py-5 px-7">
-                    <div className="grid w-full h-full max-w-[820px] mx-auto grid-cols-1 lg:grid-cols-[auto_minmax(300px,360px)] gap-4 lg:gap-4 items-center justify-center">
+                {/* Área del muro: ocupa todo el espacio disponible menos lo que use el texto de ayuda de abajo */}
+                <div className="relative flex flex-1 items-center justify-center px-8 py-8 sm:px-10 sm:py-10 md:px-12 md:py-12 lg:px-14 lg:py-14 xl:px-16 xl:py-16">
+                    {/* Muro: se ajusta al espacio disponible (ancho y alto) sin deformarse ni desbordar */}
+                    <div
+                        className="relative shrink-0 overflow-visible max-w-full"
+                        style={{
+                            aspectRatio: '500 / 750',
+                            height: '100%',
+                            width: 'auto',
+                            maxWidth: '100%',
+                            maxHeight: '100%',
+                        }}
+                    >
+                        {/* Capas */}
+                        {LAYERS.map((layer, index) => {
+                            const isActive = activeLayer.id === layer.id
 
-                        {/* Muro */}
-                        <div className="relative order-1 flex w-auto items-center justify-center overflow-visible">
-                            {/* Viewport visual: esto define cuánto ocupa el muro en el layout */}
-                            <div
+                            return (
+                                <img
+                                    key={layer.id}
+                                    src={layer.image}
+                                    alt={layer.title}
+                                    className={`
+                                    absolute inset-0 h-full w-full object-contain select-none pointer-events-none
+                                    transition-all duration-300 ease-out
+                                    ${isActive
+                                            ? 'opacity-100 brightness-105 drop-shadow-[0_0_10px_rgba(0,196,190,0.8)]'
+                                            : 'opacity-100 brightness-100'
+                                        }
+                                    `}
+                                    style={{ zIndex: index + 1 }}
+                                />
+                            )
+                        })}
+
+                        {/* Hotspots invisibles */}
+                        {LAYERS.map((layer) => (
+                            <button
+                                key={`hotspot-${layer.id}`}
+                                type="button"
+                                tabIndex={-1}
+                                aria-hidden="true"
+                                onMouseEnter={() => setActiveLayer(layer)}
+                                onClick={() => toggleLayer(layer)}
                                 className="
-                                relative shrink-0 overflow-visible
-                                w-[clamp(230px,72vw,330px)]
-                                md:w-[clamp(300px,40vw,360px)]
-                                lg:w-[320px]
-                                max-w-full
-                                "
-                                style={{ aspectRatio: '500 / 750' }}
-                            >
-                                {/* Canvas real: mantiene el tamaño original de los PNG */}
-                                <div
-                                    className="absolute top-0 h-full"
-                                    style={{
-                                        aspectRatio: '700 / 850',
-                                        left: '-22%',
-                                    }}
-                                >
-                                </div>
-                                {/* Capas */}
-                                {LAYERS.map((layer, index) => {
-                                    const isActive = activeLayer.id === layer.id
-
-                                    return (
-                                        <img
-                                            key={layer.id}
-                                            src={layer.image}
-                                            alt={layer.title}
-                                            className={`
-                                            absolute inset-0 h-full w-full object-contain select-none pointer-events-none
-                                            transition-all duration-300 ease-out
-                                            ${isActive
-                                                    ? 'opacity-100 brightness-105 drop-shadow-[0_0_10px_rgba(0,196,190,0.8)]'
-                                                    : 'opacity-100 brightness-100'
-                                                }
-                                            `}
-                                            style={{ zIndex: index + 1 }}
-                                        />
-                                    )
-                                })}
-
-                                {/* Hotspots invisibles */}
-                                {LAYERS.map((layer) => (
-                                    <button
-                                        key={`hotspot-${layer.id}`}
-                                        type="button"
-                                        tabIndex={-1}
-                                        aria-hidden="true"
-                                        onMouseEnter={() => setActiveLayer(layer)}
-                                        onClick={() => setActiveLayer(layer)}
-                                        className="
                     absolute z-40 cursor-pointer appearance-none border-0 bg-transparent
                     outline-none ring-0
                     focus:outline-none focus:ring-0
                     focus-visible:outline-none focus-visible:ring-0
                   "
-                                        style={{
-                                            top: layer.hotspot.top,
-                                            left: layer.hotspot.left,
-                                            width: layer.hotspot.width,
-                                            height: layer.hotspot.height,
-                                        }}
-                                    />
-                                ))}
+                                style={{
+                                    top: layer.hotspot.top,
+                                    left: layer.hotspot.left,
+                                    width: layer.hotspot.width,
+                                    height: layer.hotspot.height,
+                                }}
+                            />
+                        ))}
 
-                                {/* Marcadores numerados sobre el muro */}
-                                {LAYERS.map((layer) => {
-                                    const isActive = activeLayer.id === layer.id
+                        {/* Marcadores numerados sobre el muro */}
+                        {LAYERS.map((layer) => {
+                            const isActive = activeLayer.id === layer.id
 
-                                    return (
-                                        <button
-                                            key={`marker-${layer.id}`}
-                                            type="button"
-                                            onMouseEnter={() => setActiveLayer(layer)}
-                                            onFocus={() => setActiveLayer(layer)}
-                                            onClick={() => setActiveLayer(layer)}
-                                            className={`
-                      absolute z-50 flex h-8 w-8 md:h-9 md:w-9 -translate-x-1/2 -translate-y-1/2
-                      items-center justify-center rounded-full text-xs md:text-sm font-black
+                            return (
+                                <button
+                                    key={`marker-${layer.id}`}
+                                    type="button"
+                                    onMouseEnter={() => setActiveLayer(layer)}
+                                    onFocus={() => setActiveLayer(layer)}
+                                    onClick={() => toggleLayer(layer)}
+                                    aria-expanded={selectedLayer?.id === layer.id}
+                                    className={`
+                      absolute z-40 flex h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9 -translate-x-1/2 -translate-y-1/2
+                      items-center justify-center rounded-full text-[11px] sm:text-xs md:text-sm font-black
                       transition-all duration-200 outline-none
                       ${isActive
-                                                    ? 'bg-primary-300 text-dark scale-110 shadow-[0_0_14px_rgba(0,196,190,0.65)]'
-                                                    : 'bg-dark/80 text-primary-200 border border-primary-400/50 hover:bg-primary-400 hover:text-dark'
-                                                }
+                                            ? 'bg-primary-300 text-dark scale-110 shadow-[0_0_14px_rgba(0,196,190,0.65)]'
+                                            : 'bg-dark/80 text-primary-200 border border-primary-400/50 hover:bg-primary-400 hover:text-dark'
+                                        }
                     `}
-                                            style={{
-                                                top: layer.marker.top,
-                                                left: layer.marker.left,
-                                            }}
-                                            aria-label={`Ver capa ${layer.number}: ${layer.title}`}
-                                        >
-                                            {layer.number}
-                                        </button>
-                                    )
-                                })}
+                                    style={{
+                                        top: layer.marker.top,
+                                        left: layer.marker.left,
+                                    }}
+                                    aria-label={`Ver capa ${layer.number}: ${layer.title}`}
+                                >
+                                    {layer.number}
+                                </button>
+                            )
+                        })}
+
+                        {/* Tooltip de la capa seleccionada */}
+                        {selectedLayer && (
+                            <div
+                                role="tooltip"
+                                className="absolute z-[40] w-[min(66vw,210px)] sm:w-[230px] md:w-[250px]"
+                                style={{
+                                    top: selectedLayer.marker.top,
+                                    left: selectedLayer.marker.left,
+                                    transform: 'translate(-50%, calc(-100% - 28px))',
+                                }}
+                            >
+                                <div className="relative rounded-xl border border-primary-400/40 border-l-0 bg-dark-alt/80 backdrop-blur-md pr-3.5 shadow-[0_10px_28px_rgba(0,0,0,0.5)]">
+                                    <div className="rounded-xl border-l-8 border-primary-400 pl-4 py-3">
+                                        <p className="text-[13px] sm:text-[14px] md:text-[15px] font-black leading-snug text-primary-300">
+                                            {selectedLayer.title}
+                                        </p>
+                                        <p className="mt-1.5 text-[11px] sm:text-[12px] md:text-[13px] leading-snug text-white/70">
+                                            {selectedLayer.description}
+                                        </p>
+                                    </div>
+
+                                    {/* Cola apuntando al número */}
+                                    <div className="absolute left-1/2 -bottom-[10px] h-[10px] w-5 -translate-x-1/2 overflow-hidden">
+                                        <div className="h-full w-full bg-dark-alt/80 border-x border-b border-primary-400/40 [clip-path:polygon(0_0,100%_0,50%_100%)]" />
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-
-                        {/* Lista derecha / abajo en mobile */}
-                        <div className="relative z-50 order-2 flex w-full max-w-[360px] min-h-0 flex-col justify-center gap-2 justify-self-center lg:justify-self-start">
-                            {LAYERS.map((layer) => {
-                                const isActive = activeLayer.id === layer.id
-
-                                return (
-                                    <button
-                                        key={layer.id}
-                                        type="button"
-                                        onMouseEnter={() => setActiveLayer(layer)}
-                                        onFocus={() => setActiveLayer(layer)}
-                                        onClick={() => setActiveLayer(layer)}
-                                        className={`group text-left rounded-xl border px-4 py-3 transition-all duration-200 ${isActive
-                                            ? 'bg-primary-500/18 border-primary-400 shadow-[0_0_8px_rgba(0,196,190,0.16)]'
-                                            : 'bg-white/5 border-white/10 hover:bg-white/10 hover:border-primary-500/40'
-                                            }`}
-                                    >
-                                        <div className="flex items-start gap-2.5">
-                                            <span
-                                                className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-black transition-all duration-200 ${isActive
-                                                    ? 'bg-primary-300 text-dark shadow-[0_0_16px_rgba(0,196,190,0.7)]'
-                                                    : 'bg-primary-500/70 text-white group-hover:bg-primary-700 group-hover:text-dark'
-                                                    }`}
-                                            >
-                                                {layer.number}
-                                            </span>
-
-                                            <div className="min-w-0">
-                                                <p
-                                                    className={`text-[14px] md:text-[15px] font-black leading-tight transition-colors ${isActive ? 'text-primary-200' : 'text-white'
-                                                        }`}
-                                                >
-                                                    {layer.title}
-                                                </p>
-
-                                                {isActive && (
-                                                    <p className="mt-1 text-[12px] md:text-[13px] text-white/70">
-                                                        {layer.description}
-                                                    </p>
-                                                )}
-                                            </div>
-                                        </div>
-                                    </button>
-                                )
-                            })}
-                        </div>
+                        )}
                     </div>
                 </div>
+
+                {/* Capa invisible para cerrar el tooltip al tocar afuera (por debajo de números y hotspots) */}
+                {selectedLayer && (
+                    <div
+                        className="fixed inset-0 z-30"
+                        onClick={closeTooltip}
+                        aria-hidden="true"
+                    />
+                )}
             </div>
         </div>
     )

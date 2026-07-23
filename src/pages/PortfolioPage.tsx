@@ -18,8 +18,24 @@ export default function PortfolioPage() {
       <div className="absolute -top-40 right-0 w-[500px] h-[500px] rounded-full bg-primary-600/10 blur-3xl" />
 
       <div className="relative max-w-[1300px] mx-auto px-6 lg:px-8">
+        <nav
+          aria-label="Breadcrumb"
+          className="mb-8 flex items-center gap-2 text-sm text-white/45"
+        >
+          <Link to="/" className="hover:text-primary-300 transition-colors">
+            Inicio
+          </Link>
+
+          <span className="text-white/25">/</span>
+
+          <span
+            aria-current="page"
+            className="font-semibold text-white/80"
+          >
+            Portfolio
+          </span>
+        </nav>
         <div className="mb-12">
-          <span className="section-badge">Portfolio</span>
 
           <h1 className="mt-8 max-w-4xl text-5xl md:text-6xl font-black leading-[1.05] text-white">
             Proyectos construidos con{' '}
@@ -38,11 +54,10 @@ export default function PortfolioPage() {
               key={category}
               type="button"
               onClick={() => setActiveCategory(category)}
-              className={`rounded-full px-5 py-2 text-sm font-bold transition-all ${
-                activeCategory === category
+              className={`rounded-full px-5 py-2 text-sm font-bold transition-all ${activeCategory === category
                   ? 'bg-primary-500 text-dark shadow-lg shadow-primary-500/20'
                   : 'bg-white/10 text-white/70 hover:bg-white/15 hover:text-white'
-              }`}
+                }`}
             >
               {category}
             </button>

@@ -32,9 +32,9 @@ export default function SistemaConstructivoPage() {
       <div className="absolute top-[45%] -left-40 w-[520px] h-[520px] rounded-full bg-primary-500/10 blur-3xl pointer-events-none" />
 
       {/* Hero */}
-      <section className="relative max-w-[1300px] mx-auto lg:px-8 py-16 lg:py-24">
-        <div className="grid grid-cols-1 xl:grid-cols-[0.72fr_1.28fr] gap-10 lg:gap-12 xl:gap-16 items-start xl:items-stretch xl:min-h-[620px]">
-          <div className="max-w-[680px] xl:h-full flex flex-col justify-center">
+      <section id="capas" className="relative max-w-[1300px] mx-auto px-6 lg:px-8 py-10 sm:py-14 lg:py-24">
+        <div className="grid grid-cols-1 lg:grid-cols-[1fr_auto] gap-8 sm:gap-10 lg:gap-12 xl:gap-14 items-start lg:items-center">
+          <div className="w-full flex flex-col h-full justify-between gap-6 sm:gap-8 lg:gap-10">
             <SectionHeader
               badge="Sistema constructivo"
               badgePosition="top"
@@ -53,54 +53,43 @@ export default function SistemaConstructivoPage() {
                   Un sistema de construcción en seco que combina estructura de acero
                   galvanizado, aislaciones, placas y terminaciones para lograr obras
                   modernas, eficientes y planificadas.
+                <br />
+                  <span className="text-primary-400 mt-2 block">
+                    Tocá los puntos de la imagen para conocer las capas que componen el sistema y cómo se combinan para lograr una vivienda lista para habitar.
+                  </span>
                 </>
               }
             />
 
-            <div className="mt-10 flex flex-col sm:flex-row gap-4">
-              <a
-                href="#capas"
-                className="btn-primary inline-flex justify-center"
-              >
-                Consultar proyecto
-              </a>
-
+            {/* Puntos principales: ocupan el lugar que antes tenía el botón, apilados a todo el ancho, sin afectar el tamaño del título, la descripción ni la tarjeta de capas */}
+            <div className="w-full flex flex-col gap-3">
+              {SYSTEM_POINTS.map((item) => (
+                <div
+                  key={item.value}
+                  className="flex w-full items-start gap-4 border-l-[3px] border-primary-500 bg-white/5 backdrop-blur-sm rounded-r-xl px-4 py-3"
+                >
+                  <p className="text-sm md:text-base text-white/85 leading-snug">
+                    <span className="text-primary-400 font-semibold">
+                      {item.title}
+                    </span>{' '}
+                    {item.text}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Capas en hero */}
-          <div className="relative min-h-[620px] xl:h-full rounded-[32px] border border-white/10 bg-dark/80 shadow-2xl overflow-hidden">
-            <div className="absolute inset-0 bg-grid-pattern opacity-25 pointer-events-none" />
-            <div className="absolute -top-24 -right-24 w-[300px] h-[300px] rounded-full bg-primary-500/20 blur-3xl pointer-events-none" />
+          {/* Capas en hero: ancho y alto fijos por breakpoint (no % ni w-full) para que la columna "auto" del grid pueda medir correctamente el contenido y no colapse */}
+          <div className="relative mx-auto w-full h-[650px] sm:w-full sm:h-[700px] md:w-full md:h-[750px] lg:w-[460px] lg:h-full xl:w-[450px] xl:h-full rounded-[24px] sm:rounded-[32px] border border-white/10 bg-dark/80 shadow-2xl">
+            <div className="absolute inset-0 rounded-[24px] sm:rounded-[32px] overflow-hidden pointer-events-none">
+              <div className="absolute inset-0 bg-grid-pattern opacity-25" />
+              <div className="absolute -top-24 -right-24 w-[300px] h-[300px] rounded-full bg-primary-500/20 blur-3xl" />
+            </div>
 
             <div className="absolute inset-0">
               <SteelFramingLayers />
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* Puntos principales */}
-      <section className="relative max-w-[1300px] mx-auto px-6 lg:px-8 pb-24">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          {SYSTEM_POINTS.map((item) => (
-            <article
-              key={item.value}
-              className="glass-card p-6 border border-white/10 bg-white/5 group hover:bg-white/10 transition-colors"
-            >
-              <span className="text-4xl font-black text-primary-500/70">
-                {item.value}
-              </span>
-
-              <h3 className="mt-5 text-xl font-black text-primary-200 leading-tight">
-                {item.title}
-              </h3>
-
-              <p className="mt-3 text-sm text-white/60 leading-relaxed">
-                {item.text}
-              </p>
-            </article>
-          ))}
         </div>
       </section>
 
@@ -115,8 +104,7 @@ export default function SistemaConstructivoPage() {
             </h2>
 
             <p className="mt-4 max-w-[620px] mx-auto text-white/70 leading-relaxed">
-              Te asesoramos para evaluar tu proyecto y definir la mejor forma de
-              construirlo.
+              Te asesoramos para evaluar tu proyecto y definir la mejor forma de hacerlo realidad, escibinos sin compromiso.
             </p>
 
             <a
