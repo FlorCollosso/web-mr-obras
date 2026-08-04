@@ -1,3 +1,5 @@
+import { useEffect, useState } from 'react'
+import { Icon } from '@iconify/react'
 import { useInView } from '../../hooks/useInView'
 import SectionHeader from '../ui/SectionHeader'
 import { BENEFITS, PROCESS_STEPS } from '../../data'
@@ -18,8 +20,17 @@ const ADVANTAGES = [
   { highlight: 'Compatible', text: 'con una gran cantidad de diseños arquitectónicos' },
 ]
 
+const REPLAY_INTERVAL_MS = 5000
+
 export default function NosotrosSection() {
   const { ref, inView } = useInView()
+  const [replayTick, setReplayTick] = useState(0)
+
+  useEffect(() => {
+    if (!inView) return
+    const id = setInterval(() => setReplayTick((t) => t + 1), REPLAY_INTERVAL_MS)
+    return () => clearInterval(id)
+  }, [inView])
 
   return (
     <section
@@ -45,9 +56,9 @@ export default function NosotrosSection() {
           theme="dark"
           title={
             <>
-              ¿Por qué elegirnos para ayudarte a{' '}
-              <span className="text-primary-500">hacer realidad</span>{' '}
-              tu proyecto?
+              Construimos pensando en{' '}
+              <span className="text-primary-500">cómo se va a vivir</span>{' '}
+              cada espacio
             </>
           }
         />
@@ -67,8 +78,8 @@ export default function NosotrosSection() {
                 <h3 className="text-xl font-bold text-primary-100 leading-tight pr-2">
                   {b.title}
                 </h3>
-                <div className="w-12 h-12 flex items-center justify-center shrink-0 text-3xl">
-                  {b.icon}
+                <div className="w-12 h-12 flex items-center justify-center shrink-0 text-primary-400">
+                  {inView && <Icon key={replayTick} icon={b.icon} width={40} height={40} />}
                 </div>
               </div>
 

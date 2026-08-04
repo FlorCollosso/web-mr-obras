@@ -30,7 +30,7 @@ export default function SectionHeader({
         ${
           isBadgeTop
             ? 'flex flex-col items-start'
-            : 'flex flex-col sm:flex-row sm:items-start sm:justify-between gap-6'
+            : 'flex flex-col-reverse items-start gap-6 sm:flex-row sm:items-start sm:justify-between'
         }
         ${className}
       `}
@@ -60,8 +60,8 @@ export default function SectionHeader({
 
         {description && (
           <p
-            className={`mt-6 text-base md:text-lg text-white/70 max-w-2xl leading-relaxed ${
-              !isDark ? 'text-primary-900/70' : ''
+            className={`mt-6 text-base md:text-lg leading-relaxed ${
+              isDark ? 'text-white/70' : 'text-primary-900/70'
             } ${descriptionClassName}`}
           >
             {description}

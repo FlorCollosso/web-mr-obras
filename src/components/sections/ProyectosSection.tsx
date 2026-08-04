@@ -47,8 +47,28 @@ export default function ProyectosSection() {
       ref={ref}
       style={{ background: 'linear-gradient(180deg, #e6f9f7 0%, #b1ece5 100%)' }}
     >
-      {/* Decorative blobs */}
-      <div className="absolute -bottom-20 -left-20 w-[400px] h-[400px] rounded-full bg-primary-600/10 blur-3xl pointer-events-none" />
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Grid dots pattern */}
+        <div className="absolute inset-0 opacity-[0.15]"
+          style={{
+            backgroundImage: 'radial-gradient(circle, #019692 1px, transparent 1px)',
+            backgroundSize: '32px 32px',
+          }}
+        />
+        {/* Blobs */}
+        <div className="absolute -top-40 -left-40 w-[500px] h-[500px] rounded-full"
+          style={{ background: 'radial-gradient(circle, rgba(1,150,146,0.15) 0%, transparent 65%)' }} />
+        <div className="absolute -bottom-20 right-0 w-[400px] h-[400px] rounded-full"
+          style={{ background: 'radial-gradient(circle, rgba(0,196,190,0.12) 0%, transparent 65%)' }} />
+        {/* Accent arc */}
+        <svg className="absolute top-0 right-0 w-[600px] opacity-[0.07]" viewBox="0 0 600 600" fill="none">
+          <circle cx="600" cy="0" r="400" stroke="#019692" strokeWidth="80"/>
+        </svg>
+        {/* Accent arc bottom-left (larger) */}
+        <svg className="absolute bottom-0 left-0 w-[700px] opacity-[0.07]" viewBox="0 0 700 700" fill="none">
+          <circle cx="0" cy="700" r="470" stroke="#019692" strokeWidth="90"/>
+        </svg>
+      </div>
 
       <div className="relative max-w-[1300px] mx-auto px-6 lg:px-8">
         <SectionHeader

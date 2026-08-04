@@ -30,6 +30,11 @@ import divisionOficinaElTio02 from '../assets/images/division-oficina-el-tio-02.
 import divisionOficinaElTio03 from '../assets/images/division-oficina-el-tio-03.jpg'
 import divisionOficinaElTio04 from '../assets/images/division-oficina-el-tio-04.jpg'
 
+const iconSistema = 'line-md:cog-loop'
+const iconEficiencia = 'line-md:sunny-filled-loop'
+const iconConstruccion = 'line-md:home-simple-filled'
+const iconPresupuesto = 'line-md:clipboard-list'
+
 // ─── Hero Slides ───────────────────────────────────────────────────────────────
 export const HERO_SLIDES = [
   {
@@ -53,27 +58,31 @@ export const HERO_SLIDES = [
 export const BENEFITS = [
   {
     id: 1,
-    title: 'Eficiencia y rapidez',
-    description: 'Optimizamos tiempos y recursos sin descuidar calidad y terminaciones.',
-    icon: '⚡',
+    title: 'Pensamos la casa como un sistema',
+    icon: iconSistema,
+    description:
+      'Antes de empezar, revisamos cómo se va a usar el espacio: orientación, circulación, instalaciones, mantenimiento y posibles ampliaciones futuras.',
   },
   {
     id: 2,
-    title: 'Proyectos a medida',
-    description: 'Diseñamos y construimos según las necesidades reales de cada cliente.',
-    icon: '📐',
+    title: 'Eficiencia que se piensa desde el inicio',
+    icon: iconEficiencia,
+    description:
+      'Priorizamos soluciones que ayuden a reducir consumo y mejorar el confort: buena aislación, ventilación, agua caliente eficiente y alternativas renovables cuando el proyecto lo permite.',
   },
   {
     id: 3,
-    title: 'Experiencia comprobable',
-    description: 'Más de 10 años y más de 40 obras en Córdoba, sistemas modernos y tradicionales.',
-    icon: '🏗️',
+    title: 'El sistema correcto para cada obra',
+    icon: iconConstruccion,
+    description:
+      'Hay obras donde conviene steel framing, otras donde funciona mejor lo tradicional y otras donde se pueden combinar sistemas. Elegimos según el caso, no por moda.',
   },
   {
     id: 4,
-    title: 'Claridad y compromiso',
-    description: 'Acompañamos cada etapa con transparencia y cumplimiento de lo acordado.',
-    icon: '🤝',
+    title: 'Alcance claro antes de empezar',
+    icon: iconPresupuesto,
+    description:
+      'Definimos qué incluye la obra, qué queda pendiente y qué decisiones pueden impactar en tiempos o costos. La claridad inicial evita sorpresas durante el proceso.',
   },
 ]
 

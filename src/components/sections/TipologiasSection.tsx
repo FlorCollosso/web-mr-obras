@@ -205,8 +205,9 @@ export default function TipologiasSection() {
           }
           description={
             <>
-              Dos tipologías de acceso pensadas para optimizar cada metro cuadrado.
-              Ambas disponibles en steel framing o construcción tradicional.
+              Dos tipologías pensadas para optimizar cada metro cuadrado.
+              Ambas disponibles en steel framing o construcción tradicional con posibilidad de personalización.
+              <span className="text-primary-500"> Conocé cada tipología y recorré sus ambientes en 360°.</span>
             </>
           }
         />
