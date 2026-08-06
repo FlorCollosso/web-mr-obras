@@ -176,9 +176,9 @@ export default function NosotrosSection() {
         </div>
 
         {/* Steel Framing dentro de Nosotros */}
-        <div className="mt-24 lg:mt-32 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+        <div className="mt-24 lg:mt-32 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-start lg:items-stretch">
           <div
-            className={`transition-all duration-700 ${inView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
+            className={`h-full flex flex-col justify-center transition-all duration-700 ${inView ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'
               }`}
           >
             <SectionHeader
@@ -202,7 +202,7 @@ export default function NosotrosSection() {
               }
             />
 
-            <div className="w-full inline-flex flex-col items-start gap-3 mb-10">
+            <div className="w-full inline-flex flex-col items-start gap-3">
               {ADVANTAGES.map((adv, i) => (
                 <div
                   key={i}
@@ -217,33 +217,33 @@ export default function NosotrosSection() {
                 </div>
               ))}
             </div>
-
-            <Link
-              to="/sistema-constructivo"
-              className="inline-flex items-center justify-center w-full bg-primary-600/80 hover:bg-primary-600 text-primary-100 font-bold text-base rounded-full px-8 py-3.5 transition-all duration-200 hover:scale-[1.02] shadow-cta backdrop-blur-sm"
-            >
-              Descubrí cómo funciona
-            </Link>
           </div>
 
           <div
-            className={`h-full transition-all duration-700 delay-100 ${inView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
+            className={`h-full min-h-[420px] lg:min-h-0 flex flex-col gap-5 transition-all duration-700 delay-100 ${inView ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-8'
               }`}
           >
-            <div className="relative h-full min-h-[420px] rounded-2xl overflow-hidden border border-white/15 shadow-[0_24px_64px_rgba(0,0,0,0.3)]">
+            <div className="relative flex-1 min-h-[320px] sm:min-h-[420px] lg:min-h-0 rounded-2xl overflow-hidden border border-white/15 shadow-[0_24px_64px_rgba(0,0,0,0.3)]">
               <video
                 src={videoSteelFraming}
                 autoPlay
                 loop
                 muted
                 playsInline
-                className="w-full h-full object-cover"
+                className="absolute inset-0 w-full h-full object-cover"
               />
 
               <span className="absolute top-4 right-4 backdrop-blur-md bg-dark/60 border border-white/20 text-white text-xs font-bold px-4 py-2 rounded-full">
                 Nuestro diferencial
               </span>
             </div>
+
+            <Link
+              to="/sistema-constructivo"
+              className="mt-5 shrink-0 inline-flex items-center justify-center w-full bg-primary-600/80 hover:bg-primary-600 text-primary-100 font-bold text-base rounded-full px-8 py-3.5 transition-all duration-200 hover:scale-[1.02] shadow-cta backdrop-blur-sm"
+            >
+              Descubrí cómo funciona
+            </Link>
           </div>
         </div>
       </div>

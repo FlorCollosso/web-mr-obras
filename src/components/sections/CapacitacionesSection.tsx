@@ -133,7 +133,7 @@ export default function CapacitacionesSection() {
             <button
               type="button"
               onClick={() => setActiveImageIndex(0)}
-              className="relative w-full flex-1 min-h-[380px] rounded-[24px] overflow-hidden group shadow-xl border border-white/30 text-left"
+              className="relative w-full flex-1 min-h-[560px] sm:min-h-[460px] lg:min-h-[380px] rounded-[24px] overflow-hidden group shadow-xl border border-white/30 text-left"
               aria-label="Abrir imagen principal del curso"
             >
               {mainImage && (
@@ -146,26 +146,28 @@ export default function CapacitacionesSection() {
 
               <div className="absolute inset-0 bg-gradient-to-b from-white/5 via-dark-alt/20 to-dark-alt/95" />
 
-              <div className="absolute top-5 left-5">
-                <span className="inline-flex items-center rounded-full bg-white/20 backdrop-blur-md px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-primary-100 border border-white/20">
-                  Curso práctico
-                </span>
-              </div>
+              <div className="absolute inset-0 z-20 flex flex-col justify-between p-5 sm:p-6 md:p-8">
+                <div>
+                  <span className="inline-flex items-center rounded-full bg-white/20 backdrop-blur-md px-4 py-1.5 text-xs font-bold uppercase tracking-wider text-primary-100 border border-white/20">
+                    Curso práctico
+                  </span>
+                </div>
 
-              <div className="absolute bottom-0 left-0 right-0 p-6 md:p-8">
-                <p className="text-2xl md:text-3xl font-black text-white leading-tight max-w-[620px]">
-                  Curso de construcción en seco para municipios e instituciones
-                </p>
+                <div className="pt-20">
+                  <p className="text-[1.55rem] sm:text-2xl md:text-3xl font-black text-white leading-tight max-w-[620px]">
+                    Curso de construcción en seco para municipios e instituciones
+                  </p>
 
-                <p className="text-sm md:text-base text-primary-300 mt-2 font-semibold">
-                  Formación técnica con enfoque práctico
-                </p>
+                  <p className="text-sm md:text-base text-primary-300 mt-2 font-semibold">
+                    Formación técnica con enfoque práctico
+                  </p>
 
-                <p className="mt-4 max-w-[680px] text-white/70 leading-relaxed">
-                  MR Obras dicta capacitaciones contratadas por municipalidades de la
-                  provincia de Córdoba, acercando herramientas concretas de formación
-                  laboral a distintas comunidades.
-                </p>
+                  <p className="mt-3 md:mt-4 max-w-[680px] text-sm md:text-base text-white/70 leading-relaxed">
+                    MR Obras dicta capacitaciones contratadas por municipalidades de la
+                    provincia de Córdoba, acercando herramientas concretas de formación
+                    laboral a distintas comunidades.
+                  </p>
+                </div>
               </div>
             </button>
 

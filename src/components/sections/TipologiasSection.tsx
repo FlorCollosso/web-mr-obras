@@ -37,32 +37,33 @@ function PanoViewer({ typologyId }: { typologyId: number }) {
 
   return (
     <div className="rounded-2xl overflow-hidden border border-white/10 bg-dark">
-      <div className="bg-dark-alt/80 px-5 py-3 flex flex-wrap gap-3 items-center justify-between border-b border-white/8">
-        <p className="text-xs font-bold text-white/60 tracking-wide uppercase">
+      <div className="bg-dark-alt/80 px-5 py-3 flex flex-wrap gap-3 items-center justify-between border-b border-white/8 max-[470px]:px-3 max-[470px]:py-3 max-[470px]:gap-2">
+        <p className="text-xs font-bold text-white/60 tracking-wide uppercase max-[470px]:text-[10px]">
           Tour 360° — Tipología {typologyId}
         </p>
 
-        <span className="text-xs font-bold px-2 py-0.5 rounded-full border text-primary-400 border-primary-400/40 bg-primary-400/10">
+        <span className="text-xs font-bold px-2 py-0.5 rounded-full border text-primary-400 border-primary-400/40 bg-primary-400/10 max-[470px]:text-[10px] max-[470px]:px-2">
           Arrastrá para recorrer
         </span>
       </div>
 
-      <div className="h-[420px] md:h-[560px]">
+      <div className="h-[420px] md:h-[560px] overflow-hidden">
         <PanoramaViewer
           key={activeView.id}
           panorama={activeView.image}
         />
       </div>
 
-      <div className="bg-dark-alt/80 px-5 py-4 flex items-center justify-center gap-2 border-t border-white/8">
+      <div className="relative z-20 bg-dark-alt/90 px-5 py-4 flex items-center justify-center gap-2 border-t border-white/8 max-[470px]:grid max-[470px]:grid-cols-2 max-[470px]:px-3 max-[470px]:py-3 max-[470px]:gap-2">
         {PANORAMA_VIEWS.map((view) => (
           <button
             key={view.id}
             type="button"
             onClick={() => setActiveView(view)}
-            className={`rounded-full px-4 py-2 text-xs font-bold transition-all duration-200 ${activeView.id === view.id
-                ? 'bg-primary-500 text-dark shadow-lg shadow-primary-500/20'
-                : 'bg-white/8 text-white/70 hover:bg-white/14 hover:text-white'
+            aria-pressed={activeView.id === view.id}
+            className={`rounded-full px-4 py-2 text-xs font-bold whitespace-nowrap transition-all duration-200 max-[470px]:w-full max-[470px]:px-2.5 max-[470px]:py-2 max-[470px]:text-[11px] ${activeView.id === view.id
+              ? 'bg-primary-500 text-dark shadow-lg shadow-primary-500/20'
+              : 'bg-white/8 text-white/70 hover:bg-white/14 hover:text-white'
               }`}
           >
             {view.label}
@@ -138,8 +139,8 @@ function TypologyCard({ typo }: { typo: typeof TYPOLOGIES[0] }) {
               type="button"
               onClick={() => setShowTour((v) => !v)}
               className={`flex items-center gap-2 px-5 py-2 rounded-full border font-bold text-sm transition-all duration-200 ${showTour
-                  ? 'bg-primary-600/60 border-primary-500 text-primary-100'
-                  : 'bg-white/10 border-white/20 text-white hover:bg-white/20'
+                ? 'bg-primary-600/60 border-primary-500 text-primary-100'
+                : 'bg-white/10 border-white/20 text-white hover:bg-white/20'
                 }`}
             >
               <svg

@@ -3,40 +3,55 @@ import SectionHeader from '../ui/SectionHeader'
 import { useInView } from '../../hooks/useInView'
 
 // ─── SVG Icons ─────────────────────────────────────────────────────────────────
-function PinIcon()  { return <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> }
-function ClockIcon(){ return <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> }
-function ArrowIcon(){ return <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg> }
-function CheckIcon(){ return <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#019692" strokeWidth="2.5" strokeLinecap="round"><polyline points="20 6 9 17 4 12"/></svg> }
+function PinIcon() { return <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" /><circle cx="12" cy="10" r="3" /></svg> }
+function ClockIcon() { return <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round"><circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" /></svg> }
+function ArrowIcon() { return <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><path d="M5 12h14M12 5l7 7-7 7" /></svg> }
+function CheckIcon() { return <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="#019692" strokeWidth="2.5" strokeLinecap="round"><polyline points="20 6 9 17 4 12" /></svg> }
 
 const OBRA_TYPES = ['Vivienda', 'Ampliación', 'Reforma', 'Consulta general']
 
-// ─── Main component ────────────────────────────────────────────────────────────
-export default function ContactoSection() {
-  const { ref, inView } = useInView(0.05)
-  const [obra, setObra] = useState<string | null>(null)
-  const [submitted, setSubmitted] = useState(false)
+const PROJECT_STAGES = [
+  'Estoy evaluando',
+  'Tengo terreno',
+  'Tengo planos',
+  'Quiero asesoramiento',
+]
 
-  const handleSubmit = (e: FormEvent) => {
-    e.preventDefault()
-    setSubmitted(true)
-  }
+type FieldProps = {
+  id: string
+  type?: string
+  label: string
+  required?: boolean
+  placeholder?: string
+  value: string
+  onChange: (value: string) => void
+}
 
-  // Field with a label overlaid on the input's top border line
-  const Field = ({
-    id, type = 'text', label, required = false, placeholder,
-  }: { id: string; type?: string; label: string; required?: boolean; placeholder?: string }) => (
+function Field({
+  id,
+  type = 'text',
+  label,
+  required = false,
+  placeholder,
+  value,
+  onChange,
+}: FieldProps) {
+  return (
     <div className="relative">
       <label
         htmlFor={id}
-        className="px-1 text-[11px] font-bold uppercase tracking-widest text-primary-600 "
+        className="px-1 text-[11px] font-bold uppercase tracking-widest text-primary-600"
       >
         {label}
       </label>
+
       <input
         id={id}
         type={type}
         required={required}
         placeholder={placeholder}
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
         className="w-full bg-white/60 border-2 border-primary-600/20 rounded-xl
                    px-4 py-2.5 text-[14px] text-primary-800 font-medium
                    placeholder:text-primary-600/50 placeholder:font-normal
@@ -45,6 +60,44 @@ export default function ContactoSection() {
       />
     </div>
   )
+}
+
+// ─── Main component ────────────────────────────────────────────────────────────
+export default function ContactoSection() {
+  const { ref, inView } = useInView(0.05)
+  const [nombre, setNombre] = useState('')
+  const [telefono, setTelefono] = useState('')
+  const [localidad, setLocalidad] = useState('')
+  const [superficie, setSuperficie] = useState('')
+  const [obra, setObra] = useState<string | null>(null)
+  const [etapa, setEtapa] = useState<string | null>(null)
+  const [mensaje, setMensaje] = useState('')
+  const [submitted, setSubmitted] = useState(false)
+
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault()
+
+    const phoneNumber = '5493576464053'
+
+    const text = `
+    Hola, quiero hacer una consulta para MR Obras.
+
+    Nombre: ${nombre}
+    Teléfono / WhatsApp: ${telefono}
+    Localidad: ${localidad || 'No especificada'}
+    Tipo de obra: ${obra || 'No especificado'}
+    Superficie aproximada: ${superficie || 'No especificada'}
+    Etapa del proyecto: ${etapa || 'No especificada'}
+
+    Mensaje:
+    ${mensaje || 'Sin mensaje adicional'}
+      `.trim()
+
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`
+
+    window.open(whatsappUrl, '_blank')
+    setSubmitted(true)
+  }
 
   return (
     <section
@@ -93,7 +146,7 @@ export default function ContactoSection() {
             </>
           }
           description={<> Contanos qué estás pensando construir y te asesoramos sin compromiso ni trámites largos.
-          Completá el formulario o escribinos por WhatsApp y te respondemos en menos de 24 hs. </>}
+            Completá el formulario o escribinos por WhatsApp y te respondemos en menos de 24 hs. </>}
         />
 
         {/* ── Main layout ── */}
@@ -114,7 +167,7 @@ export default function ContactoSection() {
                 <span className="flex items-center gap-2">
                   <ClockIcon /> Lun a Vie · 8 a 18 hs
                 </span>
-                
+
               </div>
 
               {/* Map thumbnail — non-interactive, opens Google Maps on click */}
@@ -162,98 +215,171 @@ export default function ContactoSection() {
               <div className="absolute inset-0 bg-gradient-to-br from-white/35 to-primary-500/10 pointer-events-none" />
 
               <div className="relative">
-              {submitted ? (
-                /* ── Success state ── */
-                <div className="flex flex-col items-center justify-center gap-5 py-14 text-center">
-                  <div className="w-20 h-20 rounded-full bg-primary-500/15 border-2 border-primary-500
+                {submitted ? (
+                  /* ── Success state ── */
+                  <div className="flex flex-col items-center justify-center gap-5 py-14 text-center">
+                    <div className="w-20 h-20 rounded-full bg-primary-500/15 border-2 border-primary-500
                                   flex items-center justify-center">
-                    <CheckIcon />
-                  </div>
-                  <div>
-                    <p className="text-2xl font-bold text-primary-800 mb-2">¡Consulta enviada!</p>
-                    <p className="text-base text-primary-900/70 max-w-sm leading-relaxed">
-                      Te vamos a escribir en menos de 24 hs para charlar sobre tu proyecto.
-                    </p>
-                  </div>
-                  <button
-                    onClick={() => { setSubmitted(false); setObra(null) }}
-                    className="mt-2 text-sm font-semibold text-primary-500
+                      <CheckIcon />
+                    </div>
+                    <div>
+                      <p className="text-2xl font-bold text-primary-800 mb-2">¡Consulta enviada!</p>
+                      <p className="text-base text-primary-900/70 max-w-sm leading-relaxed">
+                        Te vamos a escribir en menos de 24 hs para charlar sobre tu proyecto.
+                      </p>
+                    </div>
+                    <button
+                      onClick={() => { setSubmitted(false); setObra(null) }}
+                      className="mt-2 text-sm font-semibold text-primary-500
                                hover:text-primary-700 underline underline-offset-4
                                transition-colors"
-                  >
-                    Enviar otra consulta
-                  </button>
-                </div>
-              ) : (
-                <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-                  <div>
-                    <h3 className="text-xl md:text-2xl font-black text-primary-800 leading-tight mb-1">
-                      Tu consulta, en menos de un minuto
-                    </h3>
-                    <p className="text-sm text-primary-600/60">
-                      Dejanos tus datos y contanos qué tenés en mente.
-                    </p>
-                    <span className="border-b border-primary-300/40 block mt-4" /> 
+                    >
+                      Enviar otra consulta
+                    </button>
                   </div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="flex flex-col gap-6">
+                    <div>
+                      <h3 className="text-xl md:text-2xl font-black text-primary-800 leading-tight mb-1">
+                        Armá tu consulta guiada
+                      </h3>
 
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                    <Field id="nombre"   label="Nombre" required placeholder="Tu nombre completo"/>
-                    <Field id="telefono" label="Teléfono / WhatsApp" type="tel" required placeholder="Tu número de teléfono"/>
-                  </div>
+                      <p className="text-sm text-primary-600/60 leading-relaxed">
+                        Completá algunos datos básicos y te asesoramos.
+                      </p>
 
-                  {/* Tipo de obra */}
-                  <div>
-                    <p className="px-1 text-[11px] font-bold uppercase tracking-widest text-primary-600 mb-2">
-                      Tipo de obra
-                    </p>
-                    <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-                      {OBRA_TYPES.map(o => {
-                        const active = obra === o
-                        return (
-                          <button
-                            key={o}
-                            type="button"
-                            onClick={() => setObra(o)}
-                            className={`px-3 py-2.5 rounded-xl text-sm font-semibold text-center
-                                        border-2 transition-all duration-150 leading-tight
-                                        ${active
-                                          ? 'bg-primary-600 border-primary-600 text-white shadow-[0_0_12px_rgba(1,150,146,0.3)]'
-                                          : 'bg-white/50 border-primary-600/20 text-primary-600 hover:border-primary-400 hover:bg-white/70'
-                                        }`}
-                          >
-                            {o}
-                          </button>
-                        )
-                      })}
+                      <span className="border-b border-primary-300/40 block mt-4" />
                     </div>
-                  </div>
 
-                  {/* Mensaje breve */}
-                  <div>
-                    <label htmlFor="mensaje" className="block px-1 text-[11px] font-bold uppercase tracking-widest text-primary-600 mb-2">
-                      Mensaje <span className="text-primary-700/70 font-normal normal-case tracking-normal">(opcional)</span>
-                    </label>
-                    <textarea
-                      id="mensaje"
-                      placeholder="Contanos brevemente tu idea: ubicación, tamaño aproximado, plazos…"
-                      rows={2}
-                      className="w-full bg-white/60 border-2 border-primary-600/20 rounded-xl
-                                 px-4 py-2.5 text-[14px] text-primary-800 font-medium
-                                 placeholder:text-primary-600/50 placeholder:font-normal
-                                 outline-none focus:border-primary-400 focus:bg-white/80
-                                 transition-all duration-200 resize-none leading-relaxed"
-                    />
-                  </div>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <Field
+                        id="nombre"
+                        label="Nombre"
+                        required
+                        placeholder="Tu nombre completo"
+                        value={nombre}
+                        onChange={setNombre}
+                      />
 
-                  <button
-                    type="submit"
-                    className="btn-primary bg-primary-600 hover:bg-primary-700 w-full text-base py-4"
-                  >
-                    Enviar mi consulta
-                    <ArrowIcon />
-                  </button>
-                </form>
-              )}
+                      <Field
+                        id="telefono"
+                        label="Teléfono / WhatsApp"
+                        type="tel"
+                        required
+                        placeholder="Tu número de teléfono"
+                        value={telefono}
+                        onChange={setTelefono}
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                      <Field
+                        id="localidad"
+                        label="Localidad"
+                        placeholder="Ej: Córdoba, Arroyito, La Francia..."
+                        value={localidad}
+                        onChange={setLocalidad}
+                      />
+
+                      <Field
+                        id="superficie"
+                        label="Superficie aproximada"
+                        placeholder="Ej: 36 m², 60 m², no sé todavía"
+                        value={superficie}
+                        onChange={setSuperficie}
+                      />
+                    </div>
+
+                    <div>
+                      <p className="px-1 text-[11px] font-bold uppercase tracking-widest text-primary-600 mb-2">
+                        Tipo de obra
+                      </p>
+
+                      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+                        {OBRA_TYPES.map((o) => {
+                          const active = obra === o
+
+                          return (
+                            <button
+                              key={o}
+                              type="button"
+                              onClick={() => setObra(o)}
+                              className={`px-3 py-2.5 rounded-xl text-sm font-semibold text-center
+                        border-2 transition-all duration-150 leading-tight
+                        ${active
+                                  ? 'bg-primary-600 border-primary-600 text-white shadow-[0_0_12px_rgba(1,150,146,0.3)]'
+                                  : 'bg-white/50 border-primary-600/20 text-primary-600 hover:border-primary-400 hover:bg-white/70'
+                                }`}
+                            >
+                              {o}
+                            </button>
+                          )
+                        })}
+                      </div>
+                    </div>
+
+                    <div>
+                      <p className="px-1 text-[11px] font-bold uppercase tracking-widest text-primary-600 mb-2">
+                        Etapa del proyecto
+                      </p>
+
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                        {PROJECT_STAGES.map((item) => {
+                          const active = etapa === item
+
+                          return (
+                            <button
+                              key={item}
+                              type="button"
+                              onClick={() => setEtapa(item)}
+                              className={`px-3 py-2.5 rounded-xl text-sm font-semibold text-center
+                        border-2 transition-all duration-150 leading-tight
+                        ${active
+                                  ? 'bg-primary-600 border-primary-600 text-white shadow-[0_0_12px_rgba(1,150,146,0.3)]'
+                                  : 'bg-white/50 border-primary-600/20 text-primary-600 hover:border-primary-400 hover:bg-white/70'
+                                }`}
+                            >
+                              {item}
+                            </button>
+                          )
+                        })}
+                      </div>
+                    </div>
+
+                    <div>
+                      <label
+                        htmlFor="mensaje"
+                        className="block px-1 text-[11px] font-bold uppercase tracking-widest text-primary-600 mb-2"
+                      >
+                        Mensaje{' '}
+                        <span className="text-primary-700/70 font-normal normal-case tracking-normal">
+                          (opcional)
+                        </span>
+                      </label>
+
+                      <textarea
+                        id="mensaje"
+                        value={mensaje}
+                        onChange={(e) => setMensaje(e.target.value)}
+                        placeholder="Contanos brevemente tu idea: tipo de vivienda, cantidad de ambientes, plazos, dudas o cualquier detalle importante."
+                        rows={3}
+                        className="w-full bg-white/60 border-2 border-primary-600/20 rounded-xl
+                 px-4 py-2.5 text-[14px] text-primary-800 font-medium
+                 placeholder:text-primary-600/50 placeholder:font-normal
+                 outline-none focus:border-primary-400 focus:bg-white/80
+                 transition-all duration-200 resize-none leading-relaxed"
+                      />
+                    </div>
+
+                    <button
+                      type="submit"
+                      className="btn-primary bg-primary-600 hover:bg-primary-700 w-full text-base py-4"
+                    >
+                      Enviar consulta por WhatsApp
+                      <ArrowIcon />
+                    </button>
+                  </form>
+                )}
               </div>
             </div>
           </div>
